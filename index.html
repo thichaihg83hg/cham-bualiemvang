@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chấm giải Búa liềm vàng 2026 – Tuyên Quang</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23C8102E'/%3E%3Cpath d='M16 5l3.1 6.6 7.2.9-5.3 4.9 1.4 7.1L16 21l-6.4 3.5L11 17.4 5.7 12.5l7.2-.9z' fill='%23F5A623'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --do:#C8102E; --do-dam:#9B0C22; --do-nhat:#FDECEE;
+  --vang:#F5A623; --vang-nhat:#FFF6E0; --nen:#FFFCF5;
+  --chu:#0D1B2A; --chu-phu:#55606E; --vien:#E7DDC6; --vien-dam:#CDBF9F;
+  --xanh:#1E7A4C; --xanh-nhat:#E6F4EC; --cam:#B86A00; --cam-nhat:#FFF1D6;
+  --sans:"Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  --serif:"Noto Serif", "Times New Roman", Georgia, serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--nen);color:var(--chu);font:15px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--do-dam)}
+:focus-visible{outline:3px solid var(--vang);outline-offset:2px}
+.an{display:none!important}
+
+/* ---------- Thanh trên cùng ---------- */
+.topbar{background:var(--do);color:#fff;border-bottom:4px solid var(--vang);position:sticky;top:0;z-index:20}
+.topbar-in{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:10px 18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand svg{flex:none}
+.brand b{font-family:var(--serif);font-size:18px;letter-spacing:.2px;white-space:nowrap}
+.brand small{display:block;font-size:12px;opacity:.85;white-space:nowrap}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{color:#fff;text-decoration:none;padding:7px 12px;border-radius:4px;font-weight:500}
+.nav a:hover{background:rgba(255,255,255,.12)}
+.nav a.on{background:rgba(0,0,0,.18);box-shadow:inset 0 -3px 0 var(--vang)}
+.user{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:14px}
+.user button{background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:4px;padding:5px 10px;cursor:pointer}
+.user button:hover{background:rgba(255,255,255,.12)}
+
+main{max-width:1400px;margin:0 auto;padding:20px 18px 60px}
+h1{font-family:var(--serif);font-size:24px;margin:0 0 4px;line-height:1.3}
+.lead{color:var(--chu-phu);margin:0 0 18px}
+
+/* ---------- Nút, ô nhập ---------- */
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--vien-dam);background:#fff;padding:8px 14px;border-radius:5px;cursor:pointer;font-weight:500;text-decoration:none;color:var(--chu);white-space:nowrap}
+.btn:hover{border-color:var(--chu)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.chinh{background:var(--do);border-color:var(--do);color:#fff}
+.btn.chinh:hover{background:var(--do-dam)}
+.btn.vang{background:var(--vang);border-color:var(--vang);color:var(--chu)}
+.btn.nho{padding:4px 9px;font-size:13px}
+.btn.nguy{color:var(--do);border-color:#E9B3BC}
+label.f{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+.o{width:100%;border:1px solid var(--vien-dam);border-radius:5px;padding:9px 11px;background:#fff}
+.o:focus{border-color:var(--chu);outline:none;box-shadow:0 0 0 3px rgba(245,166,35,.35)}
+textarea.o{min-height:64px;resize:vertical}
+.hang{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.gian{flex:1}
+
+/* ---------- Đăng nhập ---------- */
+.dn-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;background:
+  linear-gradient(180deg,var(--do) 0 220px, var(--nen) 220px)}
+.dn{width:100%;max-width:400px;background:#fff;border:1px solid var(--vien);border-top:5px solid var(--vang);border-radius:6px;padding:28px 26px;box-shadow:0 18px 40px -24px rgba(13,27,42,.45)}
+.dn .sao{display:block;margin:0 auto 10px}
+.dn h1{text-align:center;font-size:22px}
+.dn p.lead{text-align:center;font-size:14px}
+.dn .btn{width:100%;justify-content:center;margin-top:18px;padding:11px}
+.loi{color:var(--do);font-size:14px;min-height:20px;margin-top:8px}
+
+/* ---------- Tab loại hình, tiến độ ---------- */
+.tabs{display:inline-flex;border:1px solid var(--vien-dam);border-radius:6px;overflow:hidden;background:#fff}
+.tabs a,.tabs button{padding:8px 16px;text-decoration:none;color:var(--chu);border:0;background:transparent;cursor:pointer;font-weight:500}
+.tabs a+a,.tabs button+button{border-left:1px solid var(--vien-dam)}
+.tabs .on{background:var(--chu);color:#fff}
+.tien-do{display:flex;align-items:center;gap:12px;margin:14px 0 6px;font-size:14px;color:var(--chu-phu)}
+.thanh{flex:1;max-width:340px;height:8px;background:#EFE6D1;border-radius:4px;overflow:hidden}
+.thanh i{display:block;height:100%;background:var(--xanh)}
+
+/* ---------- Danh sách tác phẩm của giám khảo ---------- */
+.ds{background:#fff;border:1px solid var(--vien);border-radius:6px;margin-top:12px}
+.ds a.dong{display:grid;grid-template-columns:44px 1fr auto auto;gap:14px;align-items:center;padding:12px 16px;border-top:1px solid var(--vien);text-decoration:none;color:inherit}
+.ds a.dong:first-child{border-top:0}
+.ds a.dong:hover{background:var(--vang-nhat)}
+.stt{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--do);text-align:center}
+.ten-tp{font-weight:600;line-height:1.4}
+.phu{font-size:13px;color:var(--chu-phu)}
+.diem-nho{font-family:var(--serif);font-weight:700;font-size:17px;min-width:48px;text-align:right}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.chip.chua{background:#F1EEE6;color:var(--chu-phu)}
+.chip.nhap{background:var(--cam-nhat);color:var(--cam)}
+.chip.nop{background:var(--xanh-nhat);color:var(--xanh)}
+.chip.do{background:var(--do-nhat);color:var(--do)}
+.loc{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.loc button{border:1px solid var(--vien-dam);background:#fff;border-radius:20px;padding:4px 12px;cursor:pointer;font-size:13px}
+.loc button.on{background:var(--chu);color:#fff;border-color:var(--chu)}
+
+/* ---------- Màn hình chấm ---------- */
+.cham{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(380px,1fr);gap:20px;align-items:start}
+.xem{position:sticky;top:84px}
+.khung-xem{background:#111;border-radius:6px;overflow:hidden;aspect-ratio:16/10}
+.khung-xem iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+.khong-link{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;background:var(--vang-nhat);border:1px dashed var(--vien-dam);border-radius:6px;padding:20px;color:var(--chu-phu)}
+.tt-tp{margin-top:12px;background:#fff;border:1px solid var(--vien);border-radius:6px;padding:14px 16px}
+.tt-tp h2{font-family:var(--serif);font-size:19px;margin:0 0 8px;line-height:1.35}
+.tt-tp dl{display:grid;grid-template-columns:110px 1fr;gap:4px 10px;margin:0;font-size:14px}
+.tt-tp dt{color:var(--chu-phu)}
+.tt-tp dd{margin:0;white-space:pre-line}
+
+.phieu{background:#fff;border:1px solid var(--vien);border-radius:6px;box-shadow:0 1px 0 var(--vien)}
+.phieu-dau{padding:16px 18px 10px;border-bottom:2px solid var(--do);text-align:center}
+.phieu-dau b{font-family:var(--serif);font-size:20px;color:var(--do);letter-spacing:.5px;display:block}
+.phieu-dau span{font-size:13px;color:var(--chu-phu)}
+.nhom{border-bottom:1px solid var(--vien)}
+.nhom-ten{display:flex;justify-content:space-between;align-items:baseline;padding:10px 18px 4px;font-weight:700}
+.nhom-ten span{font-weight:500;font-size:13px;color:var(--chu-phu)}
+.tc{display:grid;grid-template-columns:1fr 92px;gap:12px;align-items:center;padding:7px 18px}
+.tc p{margin:0;font-size:14px;line-height:1.45}
+.tc p small{display:block;color:var(--chu-phu);font-size:12px;margin-top:2px}
+.tc select{width:92px;padding:7px 6px;border:1px solid var(--vien-dam);border-radius:5px;background:#fff;font-weight:700;text-align:center;font-size:16px}
+.tc select.co{border-color:var(--xanh);background:var(--xanh-nhat)}
+.nx{padding:4px 18px 14px}
+.nx textarea{min-height:52px;font-size:14px}
+.tru{background:var(--vang-nhat)}
+.tong-box{display:flex;align-items:center;gap:14px;padding:14px 18px;flex-wrap:wrap}
+.tong{display:flex;align-items:baseline;gap:6px;margin-right:auto}
+.tong b{font-family:var(--serif);font-size:40px;line-height:1;color:var(--do);font-variant-numeric:tabular-nums}
+.tong span{color:var(--chu-phu)}
+.trang-luu{font-size:12px;color:var(--chu-phu);padding:0 18px 12px}
+.da-nop{margin:12px 18px 0;padding:10px 12px;border-radius:5px;background:var(--xanh-nhat);color:var(--xanh);font-size:14px}
+.dieu-huong{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+
+/* ---------- Bảng tổng hợp ---------- */
+.cong-cu{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.gk-tien-do{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+.gk-tien-do span{background:#fff;border:1px solid var(--vien);border-radius:5px;padding:4px 10px;font-size:13px}
+.gk-tien-do b{font-variant-numeric:tabular-nums}
+.bang-wrap{overflow-x:auto;background:#fff;border:1px solid var(--vien);border-radius:6px}
+table.bang{border-collapse:collapse;width:100%;font-size:14px;min-width:900px}
+.bang th{background:var(--chu);color:#fff;font-weight:600;text-align:center;padding:9px 8px;font-size:13px;line-height:1.35;position:sticky;top:0}
+.bang td{border-top:1px solid var(--vien);padding:8px;vertical-align:top}
+.bang td.so{text-align:center;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.bang tr.lech td{background:var(--do-nhat)}
+.bang tr:hover td{background:var(--vang-nhat)}
+.bang tr.lech:hover td{background:#F9DCE0}
+.bq{font-family:var(--serif);font-size:17px;color:var(--do)}
+.bang select{border:1px solid var(--vien-dam);border-radius:4px;padding:4px;background:#fff;font-size:13px;max-width:150px}
+.mo{color:var(--chu-phu);font-weight:400}
+.chu-thich{font-size:13px;color:var(--chu-phu);margin-top:10px}
+
+/* ---------- Bảng quản trị ---------- */
+.link-ok{color:var(--xanh);font-weight:600}
+.link-thieu{color:var(--do);font-weight:600}
+
+/* ---------- Hộp thoại ---------- */
+.nen-mo{position:fixed;inset:0;background:rgba(13,27,42,.55);display:grid;place-items:center;padding:16px;z-index:50}
+.hop{background:#fff;border-radius:7px;width:100%;max-width:560px;max-height:calc(100vh - 32px);overflow:auto;border-top:5px solid var(--vang)}
+.hop.rong{max-width:1000px}
+.hop-dau{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--vien);position:sticky;top:0;background:#fff;z-index:1}
+.hop-dau h3{margin:0;font-family:var(--serif);font-size:18px}
+.hop-dau button{border:0;background:transparent;font-size:24px;line-height:1;cursor:pointer;padding:0 4px}
+.hop-than{padding:6px 20px 18px}
+.hop-chan{display:flex;justify-content:flex-end;gap:10px;padding:12px 20px;border-top:1px solid var(--vien);position:sticky;bottom:0;background:#fff}
+.chk{display:inline-flex;align-items:center;gap:6px;margin-right:16px;font-weight:500}
+table.ct{border-collapse:collapse;width:100%;font-size:13px;margin-top:10px}
+.ct th,.ct td{border:1px solid var(--vien);padding:6px 7px;vertical-align:top}
+.ct th{background:var(--vang-nhat);font-weight:600}
+.ct td.so{text-align:center;font-weight:600;white-space:nowrap}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:60;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+#toast div{background:var(--chu);color:#fff;padding:10px 16px;border-radius:6px;font-size:14px;box-shadow:0 8px 20px rgba(0,0,0,.25);max-width:90vw}
+#toast div.loi{background:var(--do);color:#fff;margin:0;min-height:0}
+.dang-tai{padding:40px;text-align:center;color:var(--chu-phu)}
+
+@media (max-width:980px){
+  .cham{grid-template-columns:1fr}
+  .xem{position:static}
+  .tong-box{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--vang);box-shadow:0 -8px 18px -12px rgba(13,27,42,.4);z-index:5;border-radius:0 0 6px 6px}
+  .tong b{font-size:32px}
+}
+@media (max-width:640px){
+  .tong-box{flex-wrap:nowrap;gap:8px;padding:10px 12px}
+  .tong b{font-size:28px}
+  .tong span{font-size:13px}
+  .tong-box .btn{padding:9px 11px}
+}
+@media (max-width:640px){
+  main{padding:14px 12px 50px}
+  .brand small{display:none}
+  .topbar-in{gap:8px;padding:8px 12px}
+  .user span{display:none}
+  .ds a.dong{grid-template-columns:34px 1fr auto;gap:10px;padding:10px 12px}
+  .ds a.dong .diem-nho{display:none}
+  .tc{padding:7px 14px}
+  .nhom-ten,.nx,.tong-box{padding-left:14px;padding-right:14px}
+  .tt-tp dl{grid-template-columns:90px 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- In phiếu chấm (khổ A4, thể thức văn bản) ---------- */
+#vung-in{display:none}
+@media print{
+  @page{size:A4;margin:20mm 15mm 18mm 30mm}
+  body{background:#fff}
+  #app,#modal-root,#toast{display:none!important}
+  #vung-in{display:block;font-family:"Times New Roman",Times,serif;font-size:13pt;color:#000;line-height:1.35}
+  .trang{page-break-after:always;break-after:page}
+  .trang:last-child{page-break-after:auto;break-after:auto}
+  .p-dau{width:100%;border-collapse:collapse}
+  .p-dau td{vertical-align:top;text-align:center;width:50%;font-size:13pt}
+  .p-gach{width:62mm;border-top:1px solid #000;margin:2px auto 0;height:0}
+  .p-tieu-de{text-align:center;margin:14pt 0 6pt}
+  .p-tieu-de b{display:block}
+  .p-tt{margin:3pt 0}
+  .p-bang{width:100%;border-collapse:collapse;margin:8pt 0}
+  .p-bang th,.p-bang td{border:1px solid #000;padding:3pt 5pt;font-size:12pt;vertical-align:middle}
+  .p-bang th{text-align:center}
+  .p-bang td.g{text-align:center;white-space:nowrap}
+  .p-nx{margin:2pt 0;text-align:justify}
+  .p-ky{width:100%;margin-top:10pt;border-collapse:collapse}
+  .p-ky td{width:50%;text-align:center;vertical-align:top}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="vung-in"></div>
+<div id="modal-root"></div>
+<div id="toast"></div>
+
+<script>
+/* =====================================================================
+   CẤU HÌNH — chỉ cần sửa 2 dòng này sau khi tạo project Supabase
+   ===================================================================== */
+const CAU_HINH = {
+  SUPABASE_URL: 'https://gpnizzmjmkoepglmnwlk.supabase.co',
+  SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdwbml6em1qbWtvZXBnbG1ud2xrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA3MTg1MTgsImV4cCI6MjEwNjI5NDUxOH0.s9asDgh7E7zbNgn4DB7IaPSb3T6KRbGPDfps9gALPc0',
+};
+
+/* =====================================================================
+   DỮ LIỆU CỐ ĐỊNH THEO PHIẾU CHẤM VÀ QUY CHẾ 03-QC/BTC
+   ===================================================================== */
+const LOAI_HINH = {
+  PT: { ten: 'Phát thanh', to: 'TỔ BÁO PHÁT THANH', day: 'Báo phát thanh' },
+  TH: { ten: 'Truyền hình', to: 'TỔ BÁO TRUYỀN HÌNH', day: 'Báo truyền hình' },
+};
+const TIEU_CHI = [
+  { nhom: 0, max: 1,   ten: 'Nội dung, đề tài của tác phẩm bám sát chủ đề cuộc thi.' },
+  { nhom: 0, max: 2.5, ten: 'Cách tiếp cận vấn đề thể hiện được mức độ quan trọng, tính thời sự, tính thực tiễn, tính đổi mới; khai thác, xử lý vấn đề, nội dung tác phẩm nêu ra đảm bảo sâu sắc, toàn diện, có tính thuyết phục.' },
+  { nhom: 0, max: 1,   ten: 'Bố cục logic, mạch lạc, đảm bảo tính liên kết, xuyên suốt vấn đề mà tác phẩm đề cập.' },
+  { nhom: 1, max: 0.5, ten: 'Trình bày đúng quy định về loại hình, thể loại, tiêu đề rõ ràng.' },
+  { nhom: 1, max: 1.5, ten: 'Văn phong mạch lạc, lập luận chặt chẽ, sắc sảo, hấp dẫn, thu hút người nghe (xem, đọc).' },
+  { nhom: 1, max: 1.5, ten: 'Đảm bảo chất lượng, nội dung của hình ảnh và các yếu tố về kỹ thuật, công nghệ.' },
+  { nhom: 2, max: 1,   ten: 'Định hướng thông tin, định hướng nhận thức, dư luận xã hội. Đóng góp tích cực, phục vụ công tác xây dựng Đảng và triển khai thực hiện các nhiệm vụ chính trị của tỉnh.' },
+  { nhom: 2, max: 1,   ten: 'Có sức lan tỏa, nhân rộng tấm gương tiêu biểu, mô hình hiệu quả.' },
+];
+const NHOM = [
+  { ten: 'Nội dung', max: 4.5, nx: 'nx_noi_dung' },
+  { ten: 'Hình thức', max: 3.5, nx: 'nx_hinh_thuc' },
+  { ten: 'Tác động xã hội', max: 2, nx: 'nx_tac_dong' },
+];
+const GIAI = ['Giải đặc biệt', 'Giải A', 'Giải B', 'Giải C', 'Giải Khuyến khích', 'Không đạt giải'];
+function khungGiai(d) {
+  if (d == null) return '';
+  if (d >= 9.5) return 'Giải đặc biệt';
+  if (d >= 8.7) return 'Giải A';
+  if (d >= 8.0) return 'Giải B';
+  if (d >= 7.2) return 'Giải C';
+  if (d >= 6.5) return 'Giải Khuyến khích';
+  return 'Không đạt giải';
+}
+const LOI = {
+  SAI_DANG_NHAP: 'Tên đăng nhập hoặc mật khẩu không đúng.',
+  PHIEN_HET_HAN: 'Phiên làm việc đã hết hạn. Đăng nhập lại để tiếp tục.',
+  KHONG_CO_QUYEN: 'Tài khoản này không có quyền thực hiện thao tác đó.',
+  KHONG_CO_TAC_PHAM: 'Không tìm thấy tác phẩm.',
+  DIEM_KHONG_HOP_LE: 'Điểm không hợp lệ: vượt điểm tối đa hoặc không theo bước 0,25.',
+  DIEM_TRU_KHONG_HOP_LE: 'Điểm trừ chỉ từ 0 đến 3, theo bước 0,25.',
+  CHUA_CHAM_DU: 'Chưa chấm đủ 8 tiêu chí nên chưa nộp được phiếu.',
+  PHIEU_DA_NOP: 'Phiếu đã nộp. Muốn sửa, đề nghị Thư ký hoặc Tổ trưởng mở khóa.',
+  SAI_MAT_KHAU_CU: 'Mật khẩu hiện tại không đúng.',
+  MAT_KHAU_NGAN: 'Mật khẩu cần ít nhất 6 ký tự.',
+  THIEU_THONG_TIN: 'Còn thiếu thông tin bắt buộc.',
+  TRUNG_TEN_DANG_NHAP: 'Tên đăng nhập này đã có người dùng.',
+  TRUNG_STT: 'Số thứ tự này đã có trong loại hình đã chọn.',
+  DA_CO_PHIEU: 'Tác phẩm đã có phiếu chấm, không xóa được.',
+  KHONG_TU_HA_QUYEN: 'Không thể tự bỏ quyền quản trị hoặc khóa tài khoản đang dùng.',
+};
+
+/* =====================================================================
+   TIỆN ÍCH
+   ===================================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const so = v => (v === null || v === undefined || v === '') ? null : Number(v);
+const fmt = v => v == null ? '' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: 2 });
+const fmt2 = v => v == null ? '' : Number(v).toLocaleString('vi-VN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const lam2 = v => Math.round(v * 100 + 1e-9) / 100;
+const ngayGio = s => s ? new Date(s).toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }) : '';
+
+function toast(msg, loi = false) {
+  const d = document.createElement('div');
+  d.textContent = msg; if (loi) d.className = 'loi';
+  $('#toast').appendChild(d);
+  setTimeout(() => d.remove(), loi ? 5000 : 2600);
+}
+
+/* Chuyển link Google Drive / YouTube sang dạng xem nhúng */
+function linkXem(link) {
+  if (!link) return { nhung: null, mo: null };
+  const l = link.trim();
+  let m = l.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || l.match(/drive\.google\.com\/(?:open|uc)\?(?:.*&)?id=([\w-]+)/);
+  if (m) return { nhung: `https://drive.google.com/file/d/${m[1]}/preview`, mo: `https://drive.google.com/file/d/${m[1]}/view` };
+  m = l.match(/drive\.google\.com\/drive\/(?:u\/\d+\/)?folders\/([\w-]+)/);
+  if (m) return { nhung: `https://drive.google.com/embeddedfolderview?id=${m[1]}#list`, mo: l, thuMuc: true };
+  m = l.match(/docs\.google\.com\/(document|presentation|spreadsheets)\/d\/([\w-]+)/);
+  if (m) return { nhung: `https://docs.google.com/${m[1]}/d/${m[2]}/preview`, mo: l };
+  m = l.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/);
+  if (m) return { nhung: `https://www.youtube.com/embed/${m[1]}`, mo: l };
+  return { nhung: null, mo: l };
+}
+
+/* =====================================================================
+   KẾT NỐI SUPABASE (gọi hàm RPC)
+   ===================================================================== */
+const S = { phien: null };
+try { S.phien = JSON.parse(localStorage.getItem('blv_phien') || 'null'); } catch (e) { S.phien = null; }
+
+async function rpc(ham, thamSo = {}) {
+  const headers = { 'Content-Type': 'application/json', apikey: CAU_HINH.SUPABASE_KEY };
+  if (CAU_HINH.SUPABASE_KEY.startsWith('eyJ')) headers.Authorization = 'Bearer ' + CAU_HINH.SUPABASE_KEY;
+  let res;
+  try {
+    res = await fetch(`${CAU_HINH.SUPABASE_URL}/rest/v1/rpc/${ham}`, { method: 'POST', headers, body: JSON.stringify(thamSo) });
+  } catch (e) {
+    throw new Error('Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.');
+  }
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch (e) { data = text; }
+  if (!res.ok) {
+    const ma = (data && data.message) || ('Lỗi máy chủ ' + res.status);
+    if (ma === 'PHIEN_HET_HAN') { luuPhien(null); setTimeout(dieuHuong, 0); }
+    const err = new Error(LOI[ma] || ma); err.ma = ma; throw err;
+  }
+  return data;
+}
+const api = (ham, thamSo = {}) => rpc(ham, { p_token: S.phien && S.phien.token, ...thamSo });
+
+function luuPhien(p) {
+  S.phien = p;
+  try { p ? localStorage.setItem('blv_phien', JSON.stringify(p)) : localStorage.removeItem('blv_phien'); } catch (e) {}
+}
+const laAdmin = () => S.phien && S.phien.vai_tro === 'admin';
+const laToTruong = () => S.phien && S.phien.vai_tro === 'totruong';
+const laGiamKhao = () => S.phien && ['giamkhao', 'totruong'].includes(S.phien.vai_tro);
+const loaiHinhCuaToi = () => laAdmin() ? Object.keys(LOAI_HINH) : (S.phien.loai_hinh || []).filter(k => LOAI_HINH[k]);
+
+/* =====================================================================
+   KHUNG GIAO DIỆN
+   ===================================================================== */
+const SAO = (c = 30) => `<svg width="${c}" height="${c}" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#F5A623"/><path d="M16 6l2.9 6.2 6.8.8-5 4.6 1.3 6.7L16 21l-6 3.3 1.3-6.7-5-4.6 6.8-.8z" fill="#C8102E"/></svg>`;
+
+function khung(noiDung, tab) {
+  const nav = [];
+  if (laGiamKhao()) nav.push(['#/cham', 'Chấm điểm', 'cham']);
+  if (laAdmin() || laToTruong()) nav.push([`#/tonghop/${loaiHinhCuaToi()[0] || 'PT'}`, 'Tổng hợp', 'tonghop']);
+  if (laAdmin()) { nav.push(['#/tacpham/PT', 'Tác phẩm', 'tacpham']); nav.push(['#/taikhoan', 'Tài khoản', 'taikhoan']); }
+  const vt = { admin: 'Thư ký', totruong: 'Tổ trưởng', giamkhao: 'Giám khảo' }[S.phien.vai_tro];
+  $('#app').innerHTML = `
+  <header class="topbar"><div class="topbar-in">
+    <div class="brand">${SAO(32)}<div><b>Giải Búa liềm vàng 2026</b><small>Đảng bộ tỉnh Tuyên Quang lần thứ I</small></div></div>
+    <nav class="nav">${nav.map(n => `<a href="${n[0]}" class="${n[2] === tab ? 'on' : ''}">${n[1]}</a>`).join('')}</nav>
+    <div class="user"><span>${esc(S.phien.ho_ten)} · ${vt}</span>
+      <button data-act="doi-mk">Đổi mật khẩu</button><button data-act="dang-xuat">Đăng xuất</button></div>
+  </div></header>
+  <main id="main">${noiDung || '<div class="dang-tai">Đang tải…</div>'}</main>`;
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if (!b) return;
+  if (b.dataset.act === 'dang-xuat') { api('dang_xuat').catch(() => {}); luuPhien(null); di('#/'); }
+  if (b.dataset.act === 'doi-mk') moDoiMatKhau();
+  if (b.dataset.act === 'dong-hop') dongHop();
+});
+
+/* ---------- Hộp thoại ---------- */
+function moHop(tieuDe, than, chan = '', rong = false) {
+  $('#modal-root').innerHTML = `<div class="nen-mo"><div class="hop ${rong ? 'rong' : ''}" role="dialog" aria-modal="true" aria-label="${esc(tieuDe)}">
+    <div class="hop-dau"><h3>${esc(tieuDe)}</h3><button data-act="dong-hop" aria-label="Đóng">×</button></div>
+    <div class="hop-than">${than}</div>${chan ? `<div class="hop-chan">${chan}</div>` : ''}</div></div>`;
+  const nen = $('.nen-mo');
+  nen.addEventListener('mousedown', e => { if (e.target === nen) dongHop(); });
+  const f = $('.hop-than input, .hop-than select, .hop-than textarea, .hop-chan .btn.chinh', nen);
+  if (f) setTimeout(() => f.focus(), 30);
+  return nen;
+}
+function dongHop() { $('#modal-root').innerHTML = ''; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('.nen-mo')) dongHop(); });
+
+function moDoiMatKhau() {
+  const h = moHop('Đổi mật khẩu', `
+    <label class="f" for="mk1">Mật khẩu hiện tại</label><input class="o" id="mk1" type="password" autocomplete="current-password">
+    <label class="f" for="mk2">Mật khẩu mới (ít nhất 6 ký tự)</label><input class="o" id="mk2" type="password" autocomplete="new-password">
+    <label class="f" for="mk3">Nhập lại mật khẩu mới</label><input class="o" id="mk3" type="password" autocomplete="new-password">
+    <div class="loi" id="mk-loi"></div>`,
+    `<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="mk-luu">Đổi mật khẩu</button>`);
+  $('#mk-luu', h).onclick = async () => {
+    const [a, b, c] = ['#mk1', '#mk2', '#mk3'].map(s => $(s, h).value);
+    if (b !== c) { $('#mk-loi', h).textContent = 'Hai lần nhập mật khẩu mới không khớp.'; return; }
+    try { await api('doi_mat_khau', { p_mat_khau_cu: a, p_mat_khau_moi: b }); dongHop(); toast('Đã đổi mật khẩu.'); }
+    catch (e) { $('#mk-loi', h).textContent = e.message; }
+  };
+}
+
+/* =====================================================================
+   ĐIỀU HƯỚNG
+   ===================================================================== */
+let roiTrang = null;   // hàm dọn dẹp khi rời màn hình (lưu nháp)
+function di(h) { if (location.hash === h) dieuHuong(); else location.hash = h; }
+async function dieuHuong() {
+  if (roiTrang) { try { roiTrang(); } catch (e) {} roiTrang = null; }
+  window.onbeforeunload = null;
+  dongHop();
+  if (!S.phien) return manDangNhap();
+  const p = (location.hash || '#/').slice(2).split('/');
+  const trang = p[0];
+  try {
+    if (trang === 'cham' && /^\d+$/.test(p[1] || '') && laGiamKhao()) return await manCham(+p[1]);
+    if (trang === 'cham' && laGiamKhao()) return await manDanhSach(p[1]);
+    if (trang === 'tonghop' && (laAdmin() || laToTruong())) return await manTongHop(p[1]);
+    if (trang === 'tacpham' && laAdmin()) return await manTacPham(p[1] || 'PT');
+    if (trang === 'taikhoan' && laAdmin()) return await manTaiKhoan();
+  } catch (e) {
+    if (e.ma === 'PHIEN_HET_HAN') return;
+    khung(`<div class="dang-tai">${esc(e.message)}</div>`);
+    return;
+  }
+  location.replace(laGiamKhao() ? '#/cham' : `#/tonghop/${loaiHinhCuaToi()[0] || 'PT'}`);
+}
+window.addEventListener('hashchange', dieuHuong);
+
+/* =====================================================================
+   MÀN HÌNH ĐĂNG NHẬP
+   ===================================================================== */
+function manDangNhap() {
+  $('#app').innerHTML = `<div class="dn-wrap"><form class="dn" id="f-dn" autocomplete="on">
+    <span class="sao">${SAO(52)}</span>
+    <h1>Chấm giải Búa liềm vàng</h1>
+    <p class="lead">Giải báo chí về xây dựng Đảng của Đảng bộ tỉnh Tuyên Quang lần thứ I – Năm 2026</p>
+    <label class="f" for="dn-ten">Tên đăng nhập</label>
+    <input class="o" id="dn-ten" autocomplete="username" autocapitalize="none" required>
+    <label class="f" for="dn-mk">Mật khẩu</label>
+    <input class="o" id="dn-mk" type="password" autocomplete="current-password" required>
+    <button class="btn chinh" type="submit">Đăng nhập</button>
+    <div class="loi" id="dn-loi"></div>
+  </form></div>`;
+  $('#dn-ten').focus();
+  $('#f-dn').onsubmit = async e => {
+    e.preventDefault();
+    const btn = $('#f-dn button'); btn.disabled = true; $('#dn-loi').textContent = '';
+    try {
+      const p = await rpc('dang_nhap', { p_ten_dang_nhap: $('#dn-ten').value, p_mat_khau: $('#dn-mk').value });
+      luuPhien(p);
+      di('#/');
+    } catch (err) { $('#dn-loi').textContent = err.message; btn.disabled = false; }
+  };
+}
+
+/* =====================================================================
+   GIÁM KHẢO: DANH SÁCH TÁC PHẨM
+   ===================================================================== */
+let locTrangThai = 'tat-ca';
+async function manDanhSach(lhChon) {
+  khung(null, 'cham');
+  const ds = await api('ds_tac_pham_cua_toi');
+  S.dsCuaToi = ds;
+  const cacLH = loaiHinhCuaToi();
+  const lh = cacLH.includes(lhChon) ? lhChon : (S.lhDangXem && cacLH.includes(S.lhDangXem) ? S.lhDangXem : cacLH[0]);
+  S.lhDangXem = lh;
+  if (!lh) { $('#main').innerHTML = '<div class="dang-tai">Tài khoản chưa được phân công loại hình nào. Liên hệ Thư ký.</div>'; return; }
+  const cua = ds.filter(t => t.loai_hinh === lh);
+  const daNop = cua.filter(t => t.trang_thai === 'da_nop').length;
+  const loc = {
+    'tat-ca': () => true, 'chua': t => !t.trang_thai, 'nhap': t => t.trang_thai === 'nhap', 'nop': t => t.trang_thai === 'da_nop',
+  };
+  const hien = cua.filter(loc[locTrangThai] || loc['tat-ca']);
+  $('#main').innerHTML = `
+    <h1>Tác phẩm cần chấm</h1>
+    <p class="lead">Chọn tác phẩm để xem và chấm điểm. Điểm được lưu nháp tự động; bấm <b>Nộp phiếu</b> khi chấm xong.</p>
+    ${cacLH.length > 1 ? `<div class="tabs">${cacLH.map(k => `<a href="#/cham/${k}" class="${k === lh ? 'on' : ''}">${LOAI_HINH[k].ten} (${ds.filter(t => t.loai_hinh === k).length})</a>`).join('')}</div>` : ''}
+    <div class="tien-do"><div class="thanh"><i style="width:${cua.length ? daNop / cua.length * 100 : 0}%"></i></div>Đã nộp ${daNop}/${cua.length} phiếu</div>
+    <div class="loc">${[['tat-ca', 'Tất cả'], ['chua', 'Chưa chấm'], ['nhap', 'Đang chấm dở'], ['nop', 'Đã nộp']].map(([k, t]) => `<button data-loc="${k}" class="${k === locTrangThai ? 'on' : ''}">${t}</button>`).join('')}</div>
+    <div class="ds">${hien.map(t => `
+      <a class="dong" href="#/cham/${t.id}">
+        <div class="stt">${t.stt}</div>
+        <div><div class="ten-tp">${esc(t.ten)}</div><div class="phu">${esc(t.tac_gia)}${t.thoi_luong ? ' · ' + esc(t.thoi_luong) : ''}${!t.link ? ' · <span style="color:var(--do)">chưa có link</span>' : ''}</div></div>
+        <div class="diem-nho">${t.tong != null && t.trang_thai === 'da_nop' ? fmt(t.tong) : ''}</div>
+        <div>${t.trang_thai === 'da_nop' ? '<span class="chip nop">Đã nộp</span>' : t.trang_thai === 'nhap' ? '<span class="chip nhap">Chấm dở</span>' : '<span class="chip chua">Chưa chấm</span>'}</div>
+      </a>`).join('') || '<div class="dang-tai">Không có tác phẩm nào ở mục này.</div>'}</div>`;
+  $$('[data-loc]').forEach(b => b.onclick = () => { locTrangThai = b.dataset.loc; manDanhSach(lh); });
+}
+
+/* =====================================================================
+   GIÁM KHẢO: MÀN HÌNH CHẤM
+   ===================================================================== */
+function luaChonDiem(max, gt) {
+  let h = '<option value="">—</option>';
+  for (let v = 0; v <= max + 1e-9; v += 0.25) {
+    const x = Math.round(v * 100) / 100;
+    h += `<option value="${x}" ${gt != null && Math.abs(gt - x) < 1e-9 ? 'selected' : ''}>${fmt(x)}</option>`;
+  }
+  return h;
+}
+
+async function manCham(id) {
+  khung(null, 'cham');
+  const [kq, ds] = await Promise.all([api('lay_phieu', { p_tac_pham_id: id }), S.dsCuaToi ? Promise.resolve(S.dsCuaToi) : api('ds_tac_pham_cua_toi')]);
+  S.dsCuaToi = ds;
+  const tp = kq.tac_pham, p0 = kq.phieu;
+  S.lhDangXem = tp.loai_hinh;
+  const st = {
+    diem: p0 ? p0.diem.map(so) : Array(8).fill(null),
+    tru: p0 ? so(p0.diem_tru) || 0 : 0,
+    nx_noi_dung: p0?.nx_noi_dung || '', nx_hinh_thuc: p0?.nx_hinh_thuc || '', nx_tac_dong: p0?.nx_tac_dong || '', nx_chung: p0?.nx_chung || '',
+    daNop: p0?.trang_thai === 'da_nop', nopLuc: p0?.nop_luc, luuLuc: p0?.cap_nhat, thayDoi: false, dangLuu: false,
+  };
+  const cung = ds.filter(t => t.loai_hinh === tp.loai_hinh);
+  const vt = cung.findIndex(t => t.id === tp.id);
+  const truoc = cung[vt - 1], sau = cung[vt + 1];
+  const lx = linkXem(tp.link);
+  const khoa = st.daNop ? 'disabled' : '';
+
+  $('#main').innerHTML = `
+  <div class="cham">
+    <section class="xem">
+      ${lx.nhung ? `<div class="khung-xem"><iframe src="${esc(lx.nhung)}" allow="autoplay; fullscreen" allowfullscreen title="Tác phẩm ${esc(tp.ten)}"></iframe></div>`
+        : `<div class="khong-link"><div>${tp.link ? 'Tác phẩm này không xem trực tiếp được trong trang.<br><br>' : 'Tác phẩm chưa có link Google Drive.<br>Đề nghị Thư ký bổ sung.'}${lx.mo ? `<a class="btn chinh" href="${esc(lx.mo)}" target="_blank" rel="noopener">Mở tác phẩm ở tab mới</a>` : ''}</div></div>`}
+      ${lx.nhung && lx.mo ? `<div style="margin-top:8px;font-size:13px"><a href="${esc(lx.mo)}" target="_blank" rel="noopener">Mở tác phẩm ở tab mới${lx.thuMuc ? ' (thư mục)' : ''}</a> nếu khung xem không phát được.</div>` : ''}
+      <div class="tt-tp">
+        <h2>${esc(tp.ten)}</h2>
+        <dl>
+          <dt>Tác giả</dt><dd>${esc(tp.tac_gia)}</dd>
+          <dt>Đơn vị</dt><dd>${esc(tp.don_vi)}</dd>
+          <dt>Loại hình</dt><dd>${LOAI_HINH[tp.loai_hinh]?.day || ''}${tp.the_loai ? ' – ' + esc(tp.the_loai) : ''}</dd>
+          ${tp.thoi_luong ? `<dt>Thời lượng</dt><dd>${esc(tp.thoi_luong)}</dd>` : ''}
+          ${tp.ghi_chu ? `<dt>Ghi chú</dt><dd>${esc(tp.ghi_chu)}</dd>` : ''}
+        </dl>
+      </div>
+    </section>
+
+    <section>
+      <form class="phieu" id="phieu" onsubmit="return false">
+        <div class="phieu-dau"><b>PHIẾU CHẤM ĐIỂM</b><span>Tác phẩm số ${tp.stt} – ${LOAI_HINH[tp.loai_hinh]?.ten || ''}</span></div>
+        ${st.daNop ? `<div class="da-nop">Phiếu đã nộp lúc ${ngayGio(st.nopLuc)}. Muốn sửa, đề nghị Thư ký hoặc Tổ trưởng mở khóa.</div>` : ''}
+        ${NHOM.map((n, ni) => `
+          <div class="nhom">
+            <div class="nhom-ten">${ni + 1}. ${n.ten} <span>tối đa ${fmt(n.max)} điểm</span></div>
+            ${TIEU_CHI.map((t, i) => t.nhom !== ni ? '' : `
+              <div class="tc"><p>${esc(t.ten)}<small>Điểm tối đa ${fmt(t.max)}</small></p>
+                <select data-i="${i}" aria-label="Điểm tiêu chí ${i + 1}" ${khoa} class="${st.diem[i] != null ? 'co' : ''}">${luaChonDiem(t.max, st.diem[i])}</select></div>`).join('')}
+            <div class="nx"><textarea class="o" data-nx="${n.nx}" placeholder="Nhận xét về ${n.ten.toLowerCase()}" ${khoa}>${esc(st[n.nx])}</textarea></div>
+          </div>`).join('')}
+        <div class="nhom tru">
+          <div class="tc"><p><b>Điểm trừ</b><small>Tác phẩm lạm dụng AI, ảnh can thiệp photoshop quá nhiều làm mất giá trị thực (trừ tối đa 3 điểm)</small></p>
+            <select id="tru" aria-label="Điểm trừ" ${khoa}>${luaChonDiem(3, st.tru).replace('<option value="">—</option>', '')}</select></div>
+        </div>
+        <div class="nx" style="padding-top:12px"><label class="f" style="margin-top:0" for="nx-chung">Nhận xét chung</label>
+          <textarea class="o" id="nx-chung" data-nx="nx_chung" ${khoa}>${esc(st.nx_chung)}</textarea></div>
+        <div class="tong-box">
+          <div class="tong"><b id="tong">0</b><span>/ 10 điểm</span></div>
+          ${st.daNop ? '' : `<button class="btn" id="luu-nhap" type="button">Lưu nháp</button><button class="btn chinh" id="nop" type="button">Nộp phiếu</button>`}
+        </div>
+        <div class="trang-luu" id="trang-luu"></div>
+      </form>
+      <div class="dieu-huong">
+        ${truoc ? `<a class="btn" href="#/cham/${truoc.id}">‹ Tác phẩm ${truoc.stt}</a>` : '<span></span>'}
+        <a class="btn" href="#/cham/${tp.loai_hinh}">Danh sách</a>
+        ${sau ? `<a class="btn" href="#/cham/${sau.id}">Tác phẩm ${sau.stt} ›</a>` : '<span></span>'}
+      </div>
+    </section>
+  </div>`;
+
+  const tinhTong = () => {
+    const c = st.diem.reduce((a, b) => a + (b || 0), 0);
+    return Math.max(0, lam2(c - (st.tru || 0)));
+  };
+  const veTong = () => {
+    $('#tong').textContent = fmt2(tinhTong());
+    const daCham = st.diem.filter(d => d != null).length;
+    const tl = $('#trang-luu');
+    if (st.daNop) { tl.textContent = ''; return; }
+    tl.textContent = `Đã chấm ${daCham}/8 tiêu chí` + (st.dangLuu ? ' · Đang lưu…' : st.thayDoi ? ' · Chưa lưu' : st.luuLuc ? ` · Đã lưu nháp lúc ${ngayGio(st.luuLuc)}` : '');
+  };
+  veTong();
+  if (st.daNop) return;
+
+  let hen = null;
+  const luu = async (nop = false) => {
+    clearTimeout(hen);
+    st.dangLuu = true; veTong();
+    try {
+      const r = await api('luu_phieu', {
+        p_tac_pham_id: tp.id, p_diem: st.diem, p_diem_tru: st.tru,
+        p_nx_noi_dung: st.nx_noi_dung, p_nx_hinh_thuc: st.nx_hinh_thuc, p_nx_tac_dong: st.nx_tac_dong, p_nx_chung: st.nx_chung, p_nop: nop,
+      });
+      st.thayDoi = false; st.luuLuc = r.cap_nhat;
+      const muc = S.dsCuaToi.find(t => t.id === tp.id);
+      if (muc) { muc.trang_thai = r.trang_thai; muc.tong = r.tong; }
+      return r;
+    } finally { st.dangLuu = false; if ($('#trang-luu')) veTong(); }
+  };
+  const henLuu = () => { st.thayDoi = true; veTong(); clearTimeout(hen); hen = setTimeout(() => luu().catch(e => toast(e.message, true)), 1500); };
+
+  $$('#phieu select[data-i]').forEach(s => s.onchange = () => {
+    st.diem[+s.dataset.i] = s.value === '' ? null : Number(s.value);
+    s.classList.toggle('co', s.value !== '');
+    henLuu();
+  });
+  $('#tru').onchange = e => { st.tru = Number(e.target.value) || 0; henLuu(); };
+  $$('#phieu textarea[data-nx]').forEach(t => t.oninput = () => { st[t.dataset.nx] = t.value; henLuu(); });
+  $('#luu-nhap').onclick = () => luu().then(() => toast('Đã lưu nháp.')).catch(e => toast(e.message, true));
+  $('#nop').onclick = () => {
+    const thieu = st.diem.map((d, i) => d == null ? i + 1 : null).filter(Boolean);
+    if (thieu.length) { toast(`Còn thiếu điểm tiêu chí: ${thieu.join(', ')}.`, true); $(`#phieu select[data-i="${thieu[0] - 1}"]`).focus(); return; }
+    const h = moHop('Nộp phiếu chấm', `
+      <p><b>${esc(tp.ten)}</b></p>
+      <p>Tổng điểm: <b class="bq" style="font-size:22px">${fmt2(tinhTong())}</b> / 10${st.tru ? ` (đã trừ ${fmt(st.tru)} điểm)` : ''}</p>
+      <p class="phu">Sau khi nộp, phiếu bị khóa. Muốn sửa phải đề nghị Thư ký hoặc Tổ trưởng mở khóa.</p>`,
+      `<button class="btn" data-act="dong-hop">Xem lại</button><button class="btn chinh" id="xac-nhan-nop">Nộp phiếu</button>`);
+    $('#xac-nhan-nop', h).onclick = async () => {
+      $('#xac-nhan-nop', h).disabled = true;
+      try {
+        await luu(true); dongHop(); toast('Đã nộp phiếu.');
+        location.hash = sau ? `#/cham/${sau.id}` : `#/cham/${tp.loai_hinh}`;
+      } catch (e) { dongHop(); toast(e.message, true); }
+    };
+  };
+  roiTrang = () => { if (st.thayDoi && !st.dangLuu) luu().catch(() => {}); };
+  window.onbeforeunload = () => st.thayDoi ? 'Phiếu chưa lưu' : undefined;
+}
+
+/* =====================================================================
+   TỔNG HỢP ĐIỂM (Thư ký, Tổ trưởng)
+   ===================================================================== */
+let sapXepTheoDiem = false;
+function tinhKetQua(data) {
+  const gks = data.giam_khao;
+  const idGK = new Set(gks.map(g => g.id));
+  return data.tac_pham.map(tp => {
+    const theoGK = {};
+    tp.phieu.forEach(p => { if (idGK.has(p.giam_khao_id)) theoGK[p.giam_khao_id] = p; });
+    const nop = Object.values(theoGK).filter(p => p.trang_thai === 'da_nop');
+    const tongs = nop.map(p => Number(p.tong));
+    const tb = (f) => nop.length ? nop.reduce((a, p) => a + f(p), 0) / nop.length : null;
+    const bq = nop.length ? lam2(tb(p => Number(p.tong))) : null;
+    const lech = nop.length >= 2 ? lam2(Math.max(...tongs) - Math.min(...tongs)) : null;
+    return {
+      tp, theoGK, soNop: nop.length, bq, lech, coLech: lech != null && lech >= 2,
+      tdxh: tb(p => Number(p.diem[6]) + Number(p.diem[7])),
+      ht: tb(p => Number(p.diem[3]) + Number(p.diem[4]) + Number(p.diem[5])),
+      du: nop.length === gks.length && gks.length > 0,
+      khung: khungGiai(bq),
+    };
+  });
+}
+function sapXep(kq) {
+  const a = [...kq];
+  if (sapXepTheoDiem) a.sort((x, y) => (y.bq ?? -1) - (x.bq ?? -1) || (y.tdxh ?? -1) - (x.tdxh ?? -1) || (y.ht ?? -1) - (x.ht ?? -1) || x.tp.stt - y.tp.stt);
+  return a;
+}
+
+async function manTongHop(lhChon) {
+  khung(null, 'tonghop');
+  const cacLH = loaiHinhCuaToi();
+  const lh = cacLH.includes(lhChon) ? lhChon : cacLH[0];
+  if (!lh) { $('#main').innerHTML = '<div class="dang-tai">Chưa được phân công loại hình nào.</div>'; return; }
+  const data = await api('tong_hop', { p_loai_hinh: lh });
+  S.tongHop = { lh, data };
+  veTongHop();
+}
+
+function veTongHop() {
+  const { lh, data } = S.tongHop;
+  const gks = data.giam_khao;
+  const kq = tinhKetQua(data);
+  const ds = sapXep(kq);
+  const soLech = kq.filter(r => r.coLech).length;
+  const soDu = kq.filter(r => r.du).length;
+  const cacLH = loaiHinhCuaToi();
+  $('#main').innerHTML = `
+    <h1>Tổng hợp điểm – ${LOAI_HINH[lh].day}</h1>
+    <p class="lead">${data.tac_pham.length} tác phẩm, ${gks.length} giám khảo. Đã đủ phiếu: ${soDu}/${data.tac_pham.length} tác phẩm.${soLech ? ` <b style="color:var(--do)">${soLech} tác phẩm chênh lệch từ 2 điểm trở lên.</b>` : ''}</p>
+    ${cacLH.length > 1 ? `<div class="tabs">${cacLH.map(k => `<a href="#/tonghop/${k}" class="${k === lh ? 'on' : ''}">${LOAI_HINH[k].ten}</a>`).join('')}</div>` : ''}
+    <div class="gk-tien-do">${gks.map((g, i) => {
+      const n = data.tac_pham.filter(t => t.phieu.some(p => p.giam_khao_id === g.id && p.trang_thai === 'da_nop')).length;
+      return `<span>GK${i + 1} ${esc(g.ho_ten)}${g.vai_tro === 'totruong' ? ' (Tổ trưởng)' : ''}: <b>${n}/${data.tac_pham.length}</b></span>`;
+    }).join('') || '<span>Chưa có giám khảo nào được phân công loại hình này.</span>'}</div>
+    <div class="cong-cu">
+      <div class="tabs"><button id="xep-stt" class="${!sapXepTheoDiem ? 'on' : ''}">Theo số thứ tự</button><button id="xep-diem" class="${sapXepTheoDiem ? 'on' : ''}">Xếp hạng theo điểm</button></div>
+      <span class="gian"></span>
+      <button class="btn" id="tai-lai">Tải lại</button>
+      <button class="btn" id="in-phieu">In phiếu chấm</button>
+      <button class="btn vang" id="xuat-excel">Xuất biểu tổng hợp (Excel)</button>
+    </div>
+    <div class="bang-wrap"><table class="bang">
+      <thead><tr>${sapXepTheoDiem ? '<th>Hạng</th>' : ''}<th>STT</th><th style="min-width:260px">Tác phẩm, tác giả</th>
+        ${gks.map((g, i) => `<th>GK${i + 1}<br><span style="font-weight:400">${esc(g.ho_ten)}</span></th>`).join('')}
+        <th>Điểm<br>bình quân</th><th>Chênh<br>lệch</th><th>Khung điểm</th><th>Dự kiến giải</th><th></th></tr></thead>
+      <tbody>${ds.map((r, hang) => `
+        <tr class="${r.coLech ? 'lech' : ''}">
+          ${sapXepTheoDiem ? `<td class="so">${r.bq != null ? hang + 1 : ''}</td>` : ''}
+          <td class="so">${r.tp.stt}</td>
+          <td><div class="ten-tp">${esc(r.tp.ten)}</div><div class="phu">${esc(r.tp.tac_gia)}</div></td>
+          ${gks.map(g => { const p = r.theoGK[g.id];
+            return `<td class="so">${!p ? '<span class="mo">—</span>' : p.trang_thai === 'da_nop' ? fmt2(p.tong) : '<span class="chip nhap">dở</span>'}</td>`; }).join('')}
+          <td class="so"><span class="bq">${fmt2(r.bq)}</span>${r.bq != null && !r.du ? `<div class="mo" style="font-size:11px">${r.soNop}/${gks.length} phiếu</div>` : ''}</td>
+          <td class="so">${r.lech != null ? (r.coLech ? `<span class="chip do">${fmt(r.lech)}</span>` : fmt(r.lech)) : ''}</td>
+          <td>${r.du ? r.khung : r.khung ? `<span class="mo" title="Chưa đủ phiếu">${r.khung}?</span>` : ''}</td>
+          <td><select data-giai="${r.tp.id}" aria-label="Dự kiến giải tác phẩm ${r.tp.stt}"><option value="">—</option>${GIAI.map(g => `<option ${r.tp.du_kien_giai === g ? 'selected' : ''}>${g}</option>`).join('')}</select></td>
+          <td><button class="btn nho" data-chi-tiet="${r.tp.id}">Chi tiết</button></td>
+        </tr>`).join('')}</tbody></table></div>
+    <p class="chu-thich">Điểm bình quân là trung bình cộng điểm các phiếu <b>đã nộp</b>, làm tròn 2 chữ số. Dòng tô đỏ: điểm giữa các giám khảo chênh lệch từ 02 điểm trở lên, Tổ trưởng cho chấm lại theo Điều 6 Quy chế (mở khóa phiếu trong mục Chi tiết). Khi xếp hạng, tác phẩm bằng điểm được ưu tiên theo điểm "Tác động xã hội", sau đó "Hình thức thể hiện".</p>`;
+
+  $('#xep-stt').onclick = () => { sapXepTheoDiem = false; veTongHop(); };
+  $('#xep-diem').onclick = () => { sapXepTheoDiem = true; veTongHop(); };
+  $('#tai-lai').onclick = () => manTongHop(lh);
+  $('#xuat-excel').onclick = () => xuatExcel(lh, data, sapXep(tinhKetQua(data))).catch(e => toast(e.message, true));
+  $('#in-phieu').onclick = () => moChonIn(lh, data);
+  $$('[data-giai]').forEach(s => s.onchange = async () => {
+    try { await api('dat_du_kien_giai', { p_tac_pham_id: +s.dataset.giai, p_giai: s.value });
+      data.tac_pham.find(t => t.id === +s.dataset.giai).du_kien_giai = s.value || null; toast('Đã lưu dự kiến giải.'); }
+    catch (e) { toast(e.message, true); }
+  });
+  $$('[data-chi-tiet]').forEach(b => b.onclick = () => moChiTiet(+b.dataset.chiTiet));
+}
+
+function moChiTiet(tpId) {
+  const { lh, data } = S.tongHop;
+  const gks = data.giam_khao;
+  const r = tinhKetQua(data).find(x => x.tp.id === tpId);
+  const tp = r.tp;
+  const o = (g, f) => { const p = r.theoGK[g.id]; return p ? f(p) : ''; };
+  const h = moHop(`Tác phẩm số ${tp.stt}: ${tp.ten}`, `
+    <p class="phu" style="margin:8px 0 0">${esc(tp.tac_gia)} – ${esc((tp.don_vi || '').replace(/\n/g, ', '))}</p>
+    <div style="overflow-x:auto"><table class="ct">
+      <thead><tr><th>Tiêu chí</th><th>Tối đa</th>${gks.map((g, i) => `<th>GK${i + 1}<br>${esc(g.ho_ten)}</th>`).join('')}</tr></thead>
+      <tbody>
+        ${TIEU_CHI.map((t, i) => `<tr><td>${i === 0 || TIEU_CHI[i - 1].nhom !== t.nhom ? `<b>${NHOM[t.nhom].ten}:</b> ` : ''}${esc(t.ten)}</td><td class="so">${fmt(t.max)}</td>${gks.map(g => `<td class="so">${o(g, p => fmt(p.diem[i]))}</td>`).join('')}</tr>`).join('')}
+        <tr><td>Điểm trừ</td><td class="so">3</td>${gks.map(g => `<td class="so">${o(g, p => Number(p.diem_tru) ? '−' + fmt(p.diem_tru) : '0')}</td>`).join('')}</tr>
+        <tr><td><b>Tổng điểm</b></td><td class="so">10</td>${gks.map(g => `<td class="so"><b>${o(g, p => fmt2(p.tong))}</b></td>`).join('')}</tr>
+        <tr><td>Trạng thái</td><td></td>${gks.map(g => `<td class="so">${o(g, p => p.trang_thai === 'da_nop'
+          ? `<span class="chip nop">Đã nộp</span><br><button class="btn nho nguy" style="margin-top:6px" data-mo-khoa="${g.id}">Mở khóa</button><br><button class="btn nho" style="margin-top:4px" data-in="${g.id}">In phiếu</button>`
+          : '<span class="chip nhap">Chấm dở</span>') || '<span class="chip chua">Chưa chấm</span>'}</td>`).join('')}</tr>
+      </tbody></table></div>
+    <h4 style="margin:16px 0 4px">Nhận xét của giám khảo</h4>
+    ${gks.map((g, i) => { const p = r.theoGK[g.id]; if (!p) return '';
+      const dong = [['Nội dung', p.nx_noi_dung], ['Hình thức', p.nx_hinh_thuc], ['Tác động xã hội', p.nx_tac_dong], ['Chung', p.nx_chung]].filter(x => x[1]);
+      return dong.length ? `<p style="margin:6px 0"><b>GK${i + 1} ${esc(g.ho_ten)}:</b><br>${dong.map(x => `– ${x[0]}: ${esc(x[1])}`).join('<br>')}</p>` : ''; }).join('') || '<p class="phu">Chưa có nhận xét.</p>'}
+    <p class="phu">Điểm bình quân: <b class="bq">${fmt2(r.bq) || '—'}</b>${r.lech != null ? ` · Chênh lệch cao nhất – thấp nhất: ${fmt(r.lech)} điểm` : ''}</p>`,
+    `<button class="btn" data-act="dong-hop">Đóng</button>`, true);
+  $$('[data-mo-khoa]', h).forEach(b => b.onclick = async () => {
+    const g = gks.find(x => x.id === +b.dataset.moKhoa);
+    if (!confirm(`Mở khóa phiếu của ${g.ho_ten} để chấm lại tác phẩm này?`)) return;
+    try { await api('mo_khoa_phieu', { p_tac_pham_id: tpId, p_giam_khao_id: g.id }); toast('Đã mở khóa phiếu.'); await manTongHop(lh); moChiTiet(tpId); }
+    catch (e) { toast(e.message, true); }
+  });
+  $$('[data-in]', h).forEach(b => b.onclick = () => {
+    const g = gks.find(x => x.id === +b.dataset.in);
+    inPhieu([{ tp, g, p: r.theoGK[g.id] }], lh);
+  });
+}
+
+/* ---------- In phiếu chấm theo mẫu ---------- */
+function moChonIn(lh, data) {
+  const gks = data.giam_khao;
+  const h = moHop('In phiếu chấm điểm', `
+    <p>Chỉ in các phiếu <b>đã nộp</b>. Mỗi phiếu một trang A4, theo mẫu Phiếu chấm điểm của Ban Giám khảo.</p>
+    <label class="f" for="in-gk">Giám khảo</label>
+    <select class="o" id="in-gk"><option value="">Tất cả giám khảo</option>${gks.map((g, i) => `<option value="${g.id}">GK${i + 1} – ${esc(g.ho_ten)}</option>`).join('')}</select>`,
+    `<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="in-ok">In phiếu</button>`);
+  $('#in-ok', h).onclick = () => {
+    const chon = $('#in-gk', h).value;
+    const ds = [];
+    gks.filter(g => !chon || g.id === +chon).forEach(g => data.tac_pham.forEach(tp => {
+      const p = tp.phieu.find(x => x.giam_khao_id === g.id && x.trang_thai === 'da_nop');
+      if (p) ds.push({ tp, g, p });
+    }));
+    if (!ds.length) { toast('Chưa có phiếu đã nộp để in.', true); return; }
+    dongHop(); inPhieu(ds, lh);
+  };
+}
+
+function inPhieu(ds, lh) {
+  const ngay = s => { const d = s ? new Date(s) : null; return d ? `ngày ${String(d.getDate()).padStart(2, '0')} tháng ${String(d.getMonth() + 1).padStart(2, '0')} năm ${d.getFullYear()}` : 'ngày      tháng 10 năm 2026'; };
+  $('#vung-in').innerHTML = ds.map(({ tp, g, p }) => {
+    const nx = [['Về nội dung', p.nx_noi_dung], ['Về hình thức', p.nx_hinh_thuc], ['Về tác động xã hội', p.nx_tac_dong], ['Nhận xét chung', p.nx_chung]].filter(x => x[1]);
+    const dongTC = TIEU_CHI.map((t, i) => {
+      const dau = i === 0 || TIEU_CHI[i - 1].nhom !== t.nhom;
+      const soDong = TIEU_CHI.filter(x => x.nhom === t.nhom).length;
+      return `<tr>${dau ? `<td class="g" rowspan="${soDong}">${t.nhom + 1}</td><td rowspan="${soDong}">${NHOM[t.nhom].ten}</td>` : ''}
+        <td>- ${esc(t.ten)}</td><td class="g">${fmt(t.max)}</td><td class="g">${fmt(p.diem[i])}</td></tr>`;
+    }).join('');
+    return `<div class="trang">
+      <table class="p-dau"><tr>
+        <td>BAN TỔ CHỨC GIẢI BÁO CHÍ<br>VỀ XÂY DỰNG ĐẢNG<br><b>BAN GIÁM KHẢO</b><br>*</td>
+        <td><b>ĐẢNG CỘNG SẢN VIỆT NAM</b><div class="p-gach"></div></td>
+      </tr></table>
+      <div class="p-tieu-de"><b>PHIẾU CHẤM ĐIỂM</b><b>Giải báo chí về xây dựng Đảng (Giải Búa liềm vàng)</b><b>của Đảng bộ tỉnh Tuyên Quang lần thứ I - Năm 2026</b>-----</div>
+      <p class="p-tt">Tên tác phẩm: ${esc(tp.ten)}</p>
+      <p class="p-tt">Tác giả: ${esc(tp.tac_gia)}</p>
+      <p class="p-tt">Đơn vị: ${esc((tp.don_vi || '').replace(/\n/g, ', '))}</p>
+      <p class="p-tt">Thể loại: ${esc(LOAI_HINH[lh].day)}${tp.the_loai ? ' – ' + esc(tp.the_loai) : ''}</p>
+      <table class="p-bang">
+        <thead><tr><th style="width:9mm">TT</th><th style="width:24mm">Các tiêu chí</th><th>Tiêu chí cụ thể</th><th style="width:16mm">Điểm tối đa</th><th style="width:16mm">Điểm chấm</th></tr></thead>
+        <tbody>${dongTC}
+          ${Number(p.diem_tru) ? `<tr><td></td><td colspan="2">Điểm trừ (lạm dụng AI, can thiệp photoshop quá nhiều)</td><td class="g">3</td><td class="g">−${fmt(p.diem_tru)}</td></tr>` : ''}
+          <tr><td></td><td colspan="2"><b>Tổng điểm</b></td><td class="g"><b>10</b></td><td class="g"><b>${fmt(p.tong)}</b></td></tr>
+        </tbody></table>
+      <p class="p-nx">Nhận xét: ${nx.length ? '' : '……………………………………………………………………………………'}</p>
+      ${nx.map(x => `<p class="p-nx">- ${x[0]}: ${esc(x[1])}</p>`).join('')}
+      <table class="p-ky"><tr><td></td><td><i>Tuyên Quang, ${ngay(p.nop_luc)}</i><br><b>GIÁM KHẢO</b><br><br><br><br><br><b>${esc(g.ho_ten)}</b></td></tr></table>
+    </div>`;
+  }).join('');
+  setTimeout(() => { window.print(); }, 150);
+}
+window.addEventListener('afterprint', () => { $('#vung-in').innerHTML = ''; });
+
+/* ---------- Xuất Excel theo mẫu biểu tổng hợp ---------- */
+function napExcelJS() {
+  if (window.ExcelJS) return Promise.resolve();
+  const nguon = ['https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js'];
+  return nguon.reduce((p, url) => p.catch(() => new Promise((ok, loi) => {
+    const s = document.createElement('script'); s.src = url; s.onload = ok; s.onerror = loi; document.head.appendChild(s);
+  })), Promise.reject()).catch(() => { throw new Error('Không tải được thư viện Excel. Kiểm tra mạng rồi thử lại.'); });
+}
+
+async function xuatExcel(lh, data, ds) {
+  toast('Đang tạo file Excel…');
+  await napExcelJS();
+  const gks = data.giam_khao;
+  const wb = new ExcelJS.Workbook();
+  const F = { name: 'Times New Roman', size: 12 };
+  const vien = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } };
+  const giua = { horizontal: 'center', vertical: 'middle', wrapText: true };
+
+  /* --- Sheet 1: Biểu tổng hợp --- */
+  const ws = wb.addWorksheet('Tổng hợp', { pageSetup: { paperSize: 9, orientation: 'landscape', fitToPage: true, fitToWidth: 1, fitToHeight: 0,
+    margins: { left: 0.6, right: 0.4, top: 0.6, bottom: 0.6, header: 0.3, footer: 0.3 } } });
+  const cot = [6, 34, 24, 26, 12, ...gks.map(() => 11), 11, 15, 26];
+  const n = cot.length;
+  ws.columns = cot.map(w => ({ width: w }));
+  const dat = (r, c1, c2, v, f = {}, a = giua) => {
+    if (c2 > c1) ws.mergeCells(r, c1, r, c2);
+    const c = ws.getCell(r, c1); c.value = v; c.font = { ...F, ...f }; c.alignment = a;
+  };
+  const giuaPhai = Math.max(6, n - 3);
+  dat(1, 1, 4, `BAN TỔ CHỨC GIẢI BÁO CHÍ VỀ XÂY DỰNG ĐẢNG\nBAN GIÁM KHẢO ${LOAI_HINH[lh].to}\n*`, { bold: true });
+  dat(1, giuaPhai, n, 'ĐẢNG CỘNG SẢN VIỆT NAM', { bold: true, size: 13 });
+  ws.getRow(1).height = 52;
+  const nay = new Date();
+  dat(2, giuaPhai, n, `Tuyên Quang, ngày ${String(nay.getDate()).padStart(2, '0')} tháng ${String(nay.getMonth() + 1).padStart(2, '0')} năm ${nay.getFullYear()}`, { italic: true });
+  dat(4, 1, n, 'BẢNG TỔNG HỢP KẾT QUẢ CHẤM ĐIỂM', { bold: true, size: 14 });
+  dat(5, 1, n, 'Tác giả, tác phẩm tham gia Giải báo chí của Đảng bộ tỉnh về xây dựng Đảng năm 2026', { bold: true });
+  dat(6, 1, n, `(Loại hình ${LOAI_HINH[lh].day})`, { italic: true });
+
+  const tieuDe = ['STT', 'Tên tác phẩm', 'Tên tác giả', 'Đơn vị công tác/số điện thoại', 'Thời lượng/\ndung lượng',
+    ...gks.map((g, i) => `GK${i + 1}\n${g.ho_ten}`), 'Điểm bình quân', 'Dự kiến giải', 'Ghi chú'];
+  const r0 = 8;
+  tieuDe.forEach((t, i) => { const c = ws.getCell(r0, i + 1); c.value = t; c.font = { ...F, bold: true }; c.alignment = giua; c.border = vien;
+    c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFF6E0' } }; });
+  ws.getRow(r0).height = 48;
+
+  ds.forEach((r, k) => {
+    const row = r0 + 1 + k;
+    const p = gks.map(g => { const x = r.theoGK[g.id]; return x && x.trang_thai === 'da_nop' ? Number(x.tong) : null; });
+    const gt = [r.tp.stt, r.tp.ten, r.tp.tac_gia, r.tp.don_vi, r.tp.thoi_luong, ...p, r.bq,
+      r.tp.du_kien_giai || (r.du ? r.khung : ''), r.tp.ghi_chu];
+    gt.forEach((v, i) => {
+      const c = ws.getCell(row, i + 1);
+      c.value = v ?? ''; c.font = F; c.border = vien;
+      c.alignment = (i === 0 || i >= 4 && i < n - 1) ? giua : { vertical: 'middle', wrapText: true };
+      if (i >= 5 && i < 5 + gks.length + 1 && typeof v === 'number') c.numFmt = '0.00';
+      if (i === 5 + gks.length) c.font = { ...F, bold: true };
+      if (r.coLech && i >= 5 && i <= 5 + gks.length) c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFADADF' } };
+    });
+  });
+  let rc = r0 + ds.length + 2;
+  if (ds.some(r => r.coLech)) { dat(rc, 1, n, 'Ghi chú: Ô tô đỏ là tác phẩm có điểm giữa các giám khảo chênh lệch từ 02 điểm trở lên (khoản 1 Điều 6 Quy chế).', { italic: true, size: 11 }, { horizontal: 'left', wrapText: true }); rc += 2; }
+  dat(rc, 1, 3, 'THƯ KÝ TỔNG HỢP', { bold: true });
+  dat(rc, giuaPhai, n, 'TỔ TRƯỞNG TỔ GIÁM KHẢO', { bold: true });
+  ws.views = [{ state: 'frozen', ySplit: r0 }];
+
+  /* --- Sheet 2: Chi tiết từng phiếu --- */
+  const w2 = wb.addWorksheet('Chi tiết phiếu chấm', { pageSetup: { paperSize: 9, orientation: 'landscape', fitToPage: true, fitToWidth: 1, fitToHeight: 0 } });
+  const td2 = ['STT', 'Tên tác phẩm', 'Giám khảo', ...TIEU_CHI.map((t, i) => `TC${i + 1}\n(tối đa ${fmt(t.max)})`), 'Điểm trừ', 'Tổng điểm', 'Trạng thái', 'Nhận xét'];
+  w2.columns = [6, 34, 20, ...TIEU_CHI.map(() => 9), 9, 10, 11, 50].map(w => ({ width: w }));
+  td2.forEach((t, i) => { const c = w2.getCell(1, i + 1); c.value = t; c.font = { ...F, bold: true }; c.alignment = giua; c.border = vien;
+    c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFF6E0' } }; });
+  w2.getRow(1).height = 44;
+  let r2 = 2;
+  data.tac_pham.forEach(tp => gks.forEach(g => {
+    const p = tp.phieu.find(x => x.giam_khao_id === g.id);
+    if (!p) return;
+    const nx = [['Nội dung', p.nx_noi_dung], ['Hình thức', p.nx_hinh_thuc], ['Tác động XH', p.nx_tac_dong], ['Chung', p.nx_chung]].filter(x => x[1]).map(x => `${x[0]}: ${x[1]}`).join('\n');
+    [tp.stt, tp.ten, g.ho_ten, ...p.diem.map(so), Number(p.diem_tru), Number(p.tong), p.trang_thai === 'da_nop' ? 'Đã nộp' : 'Chấm dở', nx]
+      .forEach((v, i) => { const c = w2.getCell(r2, i + 1); c.value = v ?? ''; c.font = F; c.border = vien;
+        c.alignment = (i === 1 || i === 2 || i === td2.length - 1) ? { vertical: 'top', wrapText: true } : { ...giua, vertical: 'top' }; });
+    r2++;
+  }));
+  w2.views = [{ state: 'frozen', ySplit: 1 }];
+
+  const buf = await wb.xlsx.writeBuffer();
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+  const d = new Date();
+  a.download = `TongHop_BuaLiemVang_${lh === 'PT' ? 'PhatThanh' : 'TruyenHinh'}_${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}.xlsx`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+
+/* =====================================================================
+   QUẢN TRỊ: TÁC PHẨM
+   ===================================================================== */
+async function manTacPham(lh) {
+  if (!LOAI_HINH[lh]) lh = 'PT';
+  khung(null, 'tacpham');
+  const ds = (await api('ds_tac_pham_cua_toi')).filter(t => t.loai_hinh === lh);
+  const thieu = ds.filter(t => !t.link).length;
+  $('#main').innerHTML = `
+    <h1>Danh sách tác phẩm</h1>
+    <p class="lead">Dán link Google Drive cho từng tác phẩm (file để chế độ "Bất kỳ ai có đường liên kết đều xem được"). ${thieu ? `<b style="color:var(--do)">Còn ${thieu} tác phẩm chưa có link.</b>` : 'Tất cả tác phẩm đã có link.'}</p>
+    <div class="cong-cu">
+      <div class="tabs">${Object.keys(LOAI_HINH).map(k => `<a href="#/tacpham/${k}" class="${k === lh ? 'on' : ''}">${LOAI_HINH[k].ten}</a>`).join('')}</div>
+      <span class="gian"></span>
+      <label class="btn" for="file-excel">Nhập từ Excel</label><input type="file" id="file-excel" accept=".xlsx" class="an">
+      <button class="btn chinh" id="them-tp">Thêm tác phẩm</button>
+    </div>
+    <div class="bang-wrap"><table class="bang" style="min-width:760px">
+      <thead><tr><th>STT</th><th style="min-width:280px">Tác phẩm, tác giả</th><th>Thời lượng</th><th>Thể loại</th><th>Link</th><th></th></tr></thead>
+      <tbody>${ds.map(t => `<tr>
+        <td class="so">${t.stt}</td>
+        <td><div class="ten-tp">${esc(t.ten)}</div><div class="phu">${esc(t.tac_gia)}</div></td>
+        <td>${esc(t.thoi_luong)}</td><td>${esc(t.the_loai)}</td>
+        <td>${t.link ? `<a class="link-ok" href="${esc(t.link)}" target="_blank" rel="noopener">Đã có</a>` : '<span class="link-thieu">Chưa có</span>'}</td>
+        <td><button class="btn nho" data-sua="${t.id}">Sửa</button></td></tr>`).join('') || '<tr><td colspan="6" class="dang-tai">Chưa có tác phẩm. Bấm "Thêm tác phẩm" hoặc "Nhập từ Excel".</td></tr>'}</tbody>
+    </table></div>`;
+  $('#them-tp').onclick = () => suaTacPham(null, lh, ds);
+  $$('[data-sua]').forEach(b => b.onclick = () => suaTacPham(ds.find(t => t.id === +b.dataset.sua), lh, ds));
+  $('#file-excel').onchange = e => { const f = e.target.files[0]; e.target.value = ''; if (f) nhapExcel(f, lh); };
+}
+
+function suaTacPham(t, lh, ds) {
+  const moi = !t;
+  const v = t || { loai_hinh: lh, stt: (ds.reduce((m, x) => Math.max(m, x.stt), 0) + 1) };
+  const h = moHop(moi ? 'Thêm tác phẩm' : `Sửa tác phẩm số ${t.stt}`, `
+    <div class="hang"><div style="width:150px"><label class="f" for="tp-lh">Loại hình</label><select class="o" id="tp-lh">${Object.keys(LOAI_HINH).map(k => `<option value="${k}" ${k === v.loai_hinh ? 'selected' : ''}>${LOAI_HINH[k].ten}</option>`).join('')}</select></div>
+      <div style="width:100px"><label class="f" for="tp-stt">STT</label><input class="o" id="tp-stt" type="number" min="1" value="${v.stt}"></div>
+      <div class="gian"><label class="f" for="tp-tl">Thời lượng/dung lượng</label><input class="o" id="tp-tl" value="${esc(v.thoi_luong)}"></div></div>
+    <label class="f" for="tp-ten">Tên tác phẩm</label><textarea class="o" id="tp-ten" rows="2">${esc(v.ten)}</textarea>
+    <label class="f" for="tp-tg">Tác giả</label><input class="o" id="tp-tg" value="${esc(v.tac_gia)}">
+    <label class="f" for="tp-dv">Đơn vị công tác/số điện thoại</label><textarea class="o" id="tp-dv" rows="2">${esc(v.don_vi)}</textarea>
+    <label class="f" for="tp-loai">Thể loại (phóng sự, ký sự, tọa đàm…)</label><input class="o" id="tp-loai" value="${esc(v.the_loai)}">
+    <label class="f" for="tp-link">Link Google Drive</label><input class="o" id="tp-link" value="${esc(v.link)}" placeholder="https://drive.google.com/file/d/…">
+    <label class="f" for="tp-gc">Ghi chú</label><textarea class="o" id="tp-gc" rows="2">${esc(v.ghi_chu)}</textarea>
+    <div class="loi" id="tp-loi"></div>`,
+    `${moi ? '' : '<button class="btn nguy" id="tp-xoa" style="margin-right:auto">Xóa</button>'}<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="tp-luu">Lưu</button>`);
+  $('#tp-luu', h).onclick = async () => {
+    try {
+      await api('luu_tac_pham', { p_id: moi ? null : t.id, p_loai_hinh: $('#tp-lh', h).value, p_stt: +$('#tp-stt', h).value,
+        p_ten: $('#tp-ten', h).value, p_tac_gia: $('#tp-tg', h).value, p_don_vi: $('#tp-dv', h).value, p_thoi_luong: $('#tp-tl', h).value,
+        p_the_loai: $('#tp-loai', h).value, p_ghi_chu: $('#tp-gc', h).value, p_link: $('#tp-link', h).value });
+      dongHop(); toast('Đã lưu tác phẩm.'); manTacPham(location.hash.split('/')[2] || lh);
+    } catch (e) { $('#tp-loi', h).textContent = e.message; }
+  };
+  if (!moi) $('#tp-xoa', h).onclick = async () => {
+    if (!confirm('Xóa tác phẩm này khỏi danh sách?')) return;
+    try { await api('xoa_tac_pham', { p_id: t.id }); dongHop(); toast('Đã xóa.'); manTacPham(lh); }
+    catch (e) { $('#tp-loi', h).textContent = e.message; }
+  };
+}
+
+/* Đọc file Excel danh sách theo mẫu (dòng tiêu đề có "STT", "Tên tác phẩm"...) */
+async function docExcelDanhSach(buf) {
+  const wb = new ExcelJS.Workbook();
+  await wb.xlsx.load(buf);
+  const ws = wb.worksheets[0];
+  const chuan = s => String(s || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const text = c => { const v = c.value; if (v == null) return ''; if (typeof v === 'object') { if (v.richText) return v.richText.map(x => x.text).join(''); if (v.text) return typeof v.text === 'string' ? v.text : (v.text.richText || []).map(x => x.text).join(''); if (v.result != null) return String(v.result); } return String(c.text ?? v); };
+  const lienKet = c => { const v = c.value; return (v && typeof v === 'object' && v.hyperlink) ? v.hyperlink : (c.hyperlink || ''); };
+  let hangTieuDe = 0, map = {};
+  ws.eachRow((row, rn) => {
+    if (hangTieuDe) return;
+    const cells = {};
+    row.eachCell((c, cn) => { cells[cn] = chuan(text(c)); });
+    const cSTT = Object.keys(cells).find(k => cells[k] === 'stt');
+    const cTen = Object.keys(cells).find(k => cells[k].includes('tên tác phẩm'));
+    if (cSTT && cTen) {
+      hangTieuDe = rn;
+      const tim = f => { const k = Object.keys(cells).find(k => f(cells[k])); return k ? +k : 0; };
+      map = { stt: +cSTT, ten: +cTen, tac_gia: tim(s => s.includes('tác giả')), don_vi: tim(s => s.includes('đơn vị')),
+        thoi_luong: tim(s => s.includes('thời lượng')), the_loai: tim(s => s.includes('thể loại')), ghi_chu: tim(s => s.includes('ghi chú')),
+        link: tim(s => s.includes('link') || s.includes('đường dẫn') || s.includes('liên kết')) };
+    }
+  });
+  if (!hangTieuDe) throw new Error('Không tìm thấy dòng tiêu đề có cột "STT" và "Tên tác phẩm" trong sheet đầu tiên.');
+  const ds = [];
+  ws.eachRow((row, rn) => {
+    if (rn <= hangTieuDe) return;
+    const stt = parseInt(text(row.getCell(map.stt)), 10);
+    if (!Number.isFinite(stt)) return;
+    const lay = k => map[k] ? text(row.getCell(map[k])).trim() : '';
+    const cTen = row.getCell(map.ten);
+    let link = map.link ? (lienKet(row.getCell(map.link)) || lay('link')) : '';
+    if (!link) link = lienKet(cTen);
+    if (link && !/^https?:\/\//i.test(link)) link = '';
+    ds.push({ stt, ten: text(cTen).trim(), tac_gia: lay('tac_gia').replace(/;\s*$/, ''), don_vi: lay('don_vi'), thoi_luong: lay('thoi_luong'),
+      the_loai: lay('the_loai'), ghi_chu: lay('ghi_chu'), link });
+  });
+  return ds.filter(x => x.ten);
+}
+
+async function nhapExcel(file, lh) {
+  try {
+    await napExcelJS();
+    const ds = await docExcelDanhSach(await file.arrayBuffer());
+    if (!ds.length) throw new Error('Không đọc được tác phẩm nào trong file.');
+    const h = moHop('Nhập danh sách từ Excel', `
+      <p>Đọc được <b>${ds.length}</b> tác phẩm (${ds.filter(x => x.link).length} tác phẩm có link) từ file <b>${esc(file.name)}</b>.</p>
+      <label class="f" for="nx-lh">Nhập vào loại hình</label>
+      <select class="o" id="nx-lh">${Object.keys(LOAI_HINH).map(k => `<option value="${k}" ${k === lh ? 'selected' : ''}>${LOAI_HINH[k].ten}</option>`).join('')}</select>
+      <p class="phu">Tác phẩm trùng số thứ tự sẽ được cập nhật thông tin; link và thể loại đang có được giữ nguyên nếu ô trong file để trống.</p>
+      <div style="max-height:220px;overflow:auto;border:1px solid var(--vien);border-radius:5px;padding:6px 10px;font-size:13px">${ds.map(x => `<div>${x.stt}. ${esc(x.ten)} ${x.link ? '<span class="link-ok">· có link</span>' : ''}</div>`).join('')}</div>`,
+      `<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="nx-ok">Nhập ${ds.length} tác phẩm</button>`);
+    $('#nx-ok', h).onclick = async () => {
+      const lhNhap = $('#nx-lh', h).value;
+      try { const n = await api('nhap_tac_pham', { p_loai_hinh: lhNhap, p_ds: ds }); dongHop(); toast(`Đã nhập ${n} tác phẩm.`); di('#/tacpham/' + lhNhap); }
+      catch (e) { toast(e.message, true); }
+    };
+  } catch (e) { toast(e.message, true); }
+}
+
+/* =====================================================================
+   QUẢN TRỊ: TÀI KHOẢN
+   ===================================================================== */
+async function manTaiKhoan() {
+  khung(null, 'taikhoan');
+  const ds = await api('ds_nguoi_dung');
+  const vt = { admin: 'Thư ký (quản trị)', totruong: 'Tổ trưởng', giamkhao: 'Giám khảo' };
+  $('#main').innerHTML = `
+    <h1>Tài khoản</h1>
+    <p class="lead">Mỗi giám khảo một tài khoản. "Thứ tự" quyết định cột GK1, GK2, GK3… trên biểu tổng hợp. Tổ trưởng vừa chấm điểm vừa xem được tổng hợp của tổ.</p>
+    <div class="cong-cu"><span class="gian"></span><button class="btn chinh" id="them-tk">Thêm tài khoản</button></div>
+    <div class="bang-wrap"><table class="bang" style="min-width:700px">
+      <thead><tr><th>Thứ tự</th><th>Họ tên</th><th>Tên đăng nhập</th><th>Vai trò</th><th>Loại hình chấm</th><th>Trạng thái</th><th></th></tr></thead>
+      <tbody>${ds.map(u => `<tr>
+        <td class="so">${u.vai_tro === 'admin' ? '' : u.thu_tu}</td><td><b>${esc(u.ho_ten)}</b></td><td>${esc(u.ten_dang_nhap)}</td><td>${vt[u.vai_tro]}</td>
+        <td>${(u.loai_hinh || []).map(k => LOAI_HINH[k]?.ten || k).join(', ')}</td>
+        <td>${u.kich_hoat ? '<span class="chip nop">Hoạt động</span>' : '<span class="chip chua">Đã khóa</span>'}</td>
+        <td><button class="btn nho" data-sua-tk="${u.id}">Sửa</button></td></tr>`).join('')}</tbody></table></div>`;
+  $('#them-tk').onclick = () => suaTaiKhoan(null, ds);
+  $$('[data-sua-tk]').forEach(b => b.onclick = () => suaTaiKhoan(ds.find(u => u.id === +b.dataset.suaTk), ds));
+}
+
+function suaTaiKhoan(u, ds) {
+  const moi = !u;
+  const v = u || { vai_tro: 'giamkhao', loai_hinh: ['PT', 'TH'], thu_tu: ds.filter(x => x.vai_tro !== 'admin').length + 1, kich_hoat: true };
+  const h = moHop(moi ? 'Thêm tài khoản' : 'Sửa tài khoản', `
+    <label class="f" for="tk-ht">Họ và tên</label><input class="o" id="tk-ht" value="${esc(v.ho_ten)}">
+    <div class="hang"><div class="gian"><label class="f" for="tk-tdn">Tên đăng nhập</label><input class="o" id="tk-tdn" value="${esc(v.ten_dang_nhap)}" autocapitalize="none"></div>
+      <div style="width:110px"><label class="f" for="tk-tt">Thứ tự GK</label><input class="o" id="tk-tt" type="number" min="0" value="${v.thu_tu}"></div></div>
+    <label class="f" for="tk-vt">Vai trò</label>
+    <select class="o" id="tk-vt">${[['giamkhao', 'Giám khảo'], ['totruong', 'Tổ trưởng (chấm + xem tổng hợp)'], ['admin', 'Thư ký (quản trị)']].map(([k, t]) => `<option value="${k}" ${k === v.vai_tro ? 'selected' : ''}>${t}</option>`).join('')}</select>
+    <label class="f">Loại hình được phân công</label>
+    ${Object.keys(LOAI_HINH).map(k => `<label class="chk"><input type="checkbox" value="${k}" class="tk-lh" ${(v.loai_hinh || []).includes(k) ? 'checked' : ''}> ${LOAI_HINH[k].ten}</label>`).join('')}
+    <label class="f" for="tk-mk">${moi ? 'Mật khẩu (ít nhất 6 ký tự)' : 'Đặt lại mật khẩu (để trống nếu không đổi)'}</label>
+    <input class="o" id="tk-mk" type="text" autocomplete="off">
+    <label class="chk" style="margin-top:12px"><input type="checkbox" id="tk-kh" ${v.kich_hoat ? 'checked' : ''}> Cho phép đăng nhập</label>
+    <div class="loi" id="tk-loi"></div>`,
+    `<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="tk-luu">Lưu</button>`);
+  $('#tk-luu', h).onclick = async () => {
+    try {
+      await api('luu_nguoi_dung', { p_id: moi ? null : u.id, p_ten_dang_nhap: $('#tk-tdn', h).value, p_ho_ten: $('#tk-ht', h).value,
+        p_vai_tro: $('#tk-vt', h).value, p_loai_hinh: $$('.tk-lh', h).filter(c => c.checked).map(c => c.value),
+        p_thu_tu: +$('#tk-tt', h).value || 1, p_kich_hoat: $('#tk-kh', h).checked, p_mat_khau: $('#tk-mk', h).value });
+      dongHop(); toast('Đã lưu tài khoản.'); manTaiKhoan();
+    } catch (e) { $('#tk-loi', h).textContent = e.message; }
+  };
+}
+
+/* ---------- Khởi động ---------- */
+if (CAU_HINH.SUPABASE_URL.includes('XXXXXXXX')) {
+  document.getElementById('app').innerHTML = '<div class="dang-tai">Chưa cấu hình Supabase. Mở file index.html, sửa SUPABASE_URL và SUPABASE_KEY ở đầu phần script.</div>';
+} else {
+  dieuHuong();
+}
+</script>
+</body>
+</html>
