@@ -288,6 +288,8 @@ const LOI = {
   TRUNG_STT: 'Số thứ tự này đã có trong loại hình đã chọn.',
   DA_CO_PHIEU: 'Tác phẩm đã có phiếu chấm, không xóa được.',
   KHONG_TU_HA_QUYEN: 'Không thể tự bỏ quyền quản trị hoặc khóa tài khoản đang dùng.',
+  KHONG_TU_XOA: 'Không thể xóa tài khoản đang đăng nhập.',
+  KHONG_CO_TAI_KHOAN: 'Tài khoản không còn tồn tại.',
 };
 
 /* =====================================================================
@@ -402,6 +404,20 @@ function moHop(tieuDe, than, chan = '', rong = false) {
 }
 function dongHop() { $('#modal-root').innerHTML = ''; }
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('.nen-mo')) dongHop(); });
+
+/* Hộp xác nhận thao tác xóa; nếu có `chuoi` thì phải gõ đúng mới bấm được */
+function xacNhanXoa({ tieuDe, noiDung, chuoi, nut }, thucHien) {
+  const h = moHop(tieuDe, `${noiDung}
+    ${chuoi ? `<label class="f" for="xn-go">Gõ <b>${esc(chuoi)}</b> để xác nhận</label><input class="o" id="xn-go" autocomplete="off" autocapitalize="none">` : ''}
+    <div class="loi" id="xn-loi"></div>`,
+    `<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="xn-ok" ${chuoi ? 'disabled' : ''}>${esc(nut)}</button>`);
+  const ok = $('#xn-ok', h);
+  if (chuoi) $('#xn-go', h).oninput = e => { ok.disabled = e.target.value.trim().toLowerCase() !== chuoi.toLowerCase(); };
+  ok.onclick = async () => {
+    ok.disabled = true;
+    try { await thucHien(); } catch (e) { $('#xn-loi', h).textContent = e.message; ok.disabled = false; }
+  };
+}
 
 function moDoiMatKhau() {
   const h = moHop('Đổi mật khẩu', `
@@ -754,9 +770,10 @@ function moChiTiet(tpId) {
         ${TIEU_CHI.map((t, i) => `<tr><td>${i === 0 || TIEU_CHI[i - 1].nhom !== t.nhom ? `<b>${NHOM[t.nhom].ten}:</b> ` : ''}${esc(t.ten)}</td><td class="so">${fmt(t.max)}</td>${gks.map(g => `<td class="so">${o(g, p => fmt(p.diem[i]))}</td>`).join('')}</tr>`).join('')}
         <tr><td>Điểm trừ</td><td class="so">3</td>${gks.map(g => `<td class="so">${o(g, p => Number(p.diem_tru) ? '−' + fmt(p.diem_tru) : '0')}</td>`).join('')}</tr>
         <tr><td><b>Tổng điểm</b></td><td class="so">10</td>${gks.map(g => `<td class="so"><b>${o(g, p => fmt2(p.tong))}</b></td>`).join('')}</tr>
-        <tr><td>Trạng thái</td><td></td>${gks.map(g => `<td class="so">${o(g, p => p.trang_thai === 'da_nop'
-          ? `<span class="chip nop">Đã nộp</span><br><button class="btn nho nguy" style="margin-top:6px" data-mo-khoa="${g.id}">Mở khóa</button><br><button class="btn nho" style="margin-top:4px" data-in="${g.id}">In phiếu</button>`
-          : '<span class="chip nhap">Chấm dở</span>') || '<span class="chip chua">Chưa chấm</span>'}</td>`).join('')}</tr>
+        <tr><td>Trạng thái</td><td></td>${gks.map(g => `<td class="so">${o(g, p => (p.trang_thai === 'da_nop'
+          ? `<span class="chip nop">Đã nộp</span><br><button class="btn nho" style="margin-top:6px" data-mo-khoa="${g.id}">Mở khóa</button><br><button class="btn nho" style="margin-top:4px" data-in="${g.id}">In phiếu</button>`
+          : '<span class="chip nhap">Chấm dở</span>')
+          + (laAdmin() ? `<br><button class="btn nho nguy" style="margin-top:4px" data-xoa-phieu="${g.id}">Xóa phiếu</button>` : '')) || '<span class="chip chua">Chưa chấm</span>'}</td>`).join('')}</tr>
       </tbody></table></div>
     <h4 style="margin:16px 0 4px">Nhận xét của giám khảo</h4>
     ${gks.map((g, i) => { const p = r.theoGK[g.id]; if (!p) return '';
@@ -769,6 +786,17 @@ function moChiTiet(tpId) {
     if (!confirm(`Mở khóa phiếu của ${g.ho_ten} để chấm lại tác phẩm này?`)) return;
     try { await api('mo_khoa_phieu', { p_tac_pham_id: tpId, p_giam_khao_id: g.id }); toast('Đã mở khóa phiếu.'); await manTongHop(lh); moChiTiet(tpId); }
     catch (e) { toast(e.message, true); }
+  });
+  $$('[data-xoa-phieu]', h).forEach(b => b.onclick = () => {
+    const g = gks.find(x => x.id === +b.dataset.xoaPhieu);
+    const p = r.theoGK[g.id];
+    xacNhanXoa({ tieuDe: 'Xóa phiếu chấm',
+      noiDung: `<p>Xóa phiếu của <b>${esc(g.ho_ten)}</b> cho tác phẩm số ${tp.stt} <b>${esc(tp.ten)}</b>${p.trang_thai === 'da_nop' ? ` (đã nộp, ${fmt2(p.tong)} điểm)` : ' (đang chấm dở)'}?</p>
+        <p class="phu">Giám khảo sẽ phải chấm lại tác phẩm này từ đầu. Bản sao phiếu bị xóa được lưu trong nhật ký hệ thống.</p>`,
+      nut: 'Xóa phiếu' }, async () => {
+      await api('xoa_phieu', { p_tac_pham_id: tpId, p_giam_khao_id: g.id });
+      toast('Đã xóa phiếu.'); await manTongHop(lh); moChiTiet(tpId);
+    });
   });
   $$('[data-in]', h).forEach(b => b.onclick = () => {
     const g = gks.find(x => x.id === +b.dataset.in);
@@ -1054,13 +1082,15 @@ async function manTaiKhoan() {
   const vt = { admin: 'Thư ký (quản trị)', totruong: 'Tổ trưởng', giamkhao: 'Giám khảo' };
   $('#main').innerHTML = `
     <h1>Tài khoản</h1>
-    <p class="lead">Mỗi giám khảo một tài khoản. "Thứ tự" quyết định cột GK1, GK2, GK3… trên biểu tổng hợp. Tổ trưởng vừa chấm điểm vừa xem được tổng hợp của tổ.</p>
+    <p class="lead">Mỗi giám khảo một tài khoản. "Thứ tự" quyết định cột GK1, GK2, GK3… trên biểu tổng hợp. Tổ trưởng vừa chấm điểm vừa xem được tổng hợp của tổ.
+      Khi thay giám khảo: tạo tài khoản mới với cùng số thứ tự, rồi xóa tài khoản cũ (hoặc bỏ chọn "Cho phép đăng nhập" để giữ lại điểm cũ nhưng không tính vào tổng hợp).</p>
     <div class="cong-cu"><span class="gian"></span><button class="btn chinh" id="them-tk">Thêm tài khoản</button></div>
     <div class="bang-wrap"><table class="bang" style="min-width:700px">
-      <thead><tr><th>Thứ tự</th><th>Họ tên</th><th>Tên đăng nhập</th><th>Vai trò</th><th>Loại hình chấm</th><th>Trạng thái</th><th></th></tr></thead>
+      <thead><tr><th>Thứ tự</th><th>Họ tên</th><th>Tên đăng nhập</th><th>Vai trò</th><th>Loại hình chấm</th><th>Phiếu đã chấm</th><th>Trạng thái</th><th></th></tr></thead>
       <tbody>${ds.map(u => `<tr>
         <td class="so">${u.vai_tro === 'admin' ? '' : u.thu_tu}</td><td><b>${esc(u.ho_ten)}</b></td><td>${esc(u.ten_dang_nhap)}</td><td>${vt[u.vai_tro]}</td>
         <td>${(u.loai_hinh || []).map(k => LOAI_HINH[k]?.ten || k).join(', ')}</td>
+        <td>${u.vai_tro === 'admin' ? '' : `${u.so_nop} đã nộp${u.so_nhap ? `, ${u.so_nhap} chấm dở` : ''}`}</td>
         <td>${u.kich_hoat ? '<span class="chip nop">Hoạt động</span>' : '<span class="chip chua">Đã khóa</span>'}</td>
         <td><button class="btn nho" data-sua-tk="${u.id}">Sửa</button></td></tr>`).join('')}</tbody></table></div>`;
   $('#them-tk').onclick = () => suaTaiKhoan(null, ds);
@@ -1081,7 +1111,18 @@ function suaTaiKhoan(u, ds) {
     <label class="f" for="tk-mk">${moi ? 'Mật khẩu (ít nhất 6 ký tự)' : 'Đặt lại mật khẩu (để trống nếu không đổi)'}</label>
     <input class="o" id="tk-mk" type="text" autocomplete="off">
     <label class="chk" style="margin-top:12px"><input type="checkbox" id="tk-kh" ${v.kich_hoat ? 'checked' : ''}> Cho phép đăng nhập</label>
-    <div class="loi" id="tk-loi"></div>`,
+    <div class="loi" id="tk-loi"></div>
+    ${moi || u.id === S.phien.id ? '' : `
+    <div style="margin-top:14px;padding:12px 14px;border:1px solid #E9B3BC;border-radius:6px;background:var(--do-nhat)">
+      <b style="color:var(--do)">Xóa dữ liệu</b>
+      <p class="phu" style="margin:4px 0 10px">Tài khoản này có ${u.so_nop} phiếu đã nộp, ${u.so_nhap} phiếu chấm dở.</p>
+      <div class="hang">
+        <select class="o" id="tk-xoa-lh" style="width:auto"><option value="">Tất cả loại hình</option>${Object.keys(LOAI_HINH).map(k => `<option value="${k}">${LOAI_HINH[k].ten}</option>`).join('')}</select>
+        <button class="btn nguy" id="tk-xoa-diem" ${u.so_nop + u.so_nhap ? '' : 'disabled'}>Xóa điểm đã chấm</button>
+        <span class="gian"></span>
+        <button class="btn nguy" id="tk-xoa">Xóa tài khoản</button>
+      </div>
+    </div>`}`,
     `<button class="btn" data-act="dong-hop">Hủy</button><button class="btn chinh" id="tk-luu">Lưu</button>`);
   $('#tk-luu', h).onclick = async () => {
     try {
@@ -1090,6 +1131,26 @@ function suaTaiKhoan(u, ds) {
         p_thu_tu: +$('#tk-tt', h).value || 1, p_kich_hoat: $('#tk-kh', h).checked, p_mat_khau: $('#tk-mk', h).value });
       dongHop(); toast('Đã lưu tài khoản.'); manTaiKhoan();
     } catch (e) { $('#tk-loi', h).textContent = e.message; }
+  };
+  if (moi || u.id === S.phien.id) return;
+  $('#tk-xoa-diem', h).onclick = () => {
+    const lh = $('#tk-xoa-lh', h).value;
+    xacNhanXoa({ tieuDe: 'Xóa điểm của giám khảo',
+      noiDung: `<p>Xóa toàn bộ phiếu chấm${lh ? ` loại hình <b>${LOAI_HINH[lh].ten}</b>` : ''} của <b>${esc(u.ho_ten)}</b>. Tài khoản vẫn giữ nguyên, giám khảo có thể chấm lại từ đầu.</p>
+        <p class="phu">Bản sao các phiếu bị xóa được lưu trong nhật ký hệ thống.</p>`,
+      chuoi: u.ten_dang_nhap, nut: 'Xóa điểm' }, async () => {
+      const n = await api('xoa_diem_giam_khao', { p_giam_khao_id: u.id, p_loai_hinh: lh || null });
+      dongHop(); toast(`Đã xóa ${n} phiếu của ${u.ho_ten}.`); manTaiKhoan();
+    });
+  };
+  $('#tk-xoa', h).onclick = () => {
+    xacNhanXoa({ tieuDe: 'Xóa tài khoản',
+      noiDung: `<p>Xóa tài khoản <b>${esc(u.ho_ten)}</b> (${esc(u.ten_dang_nhap)})${u.so_nop + u.so_nhap ? ` cùng <b>${u.so_nop + u.so_nhap} phiếu chấm</b> của người này` : ''}.</p>
+        <p class="phu">Điểm của giám khảo này sẽ không còn trong bảng tổng hợp. Bản sao được lưu trong nhật ký hệ thống.</p>`,
+      chuoi: u.ten_dang_nhap, nut: 'Xóa tài khoản' }, async () => {
+      await api('xoa_nguoi_dung', { p_id: u.id });
+      dongHop(); toast(`Đã xóa tài khoản ${u.ho_ten}.`); manTaiKhoan();
+    });
   };
 }
 
