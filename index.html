@@ -105,6 +105,16 @@ textarea.o{min-height:64px;resize:vertical}
 .xem{position:sticky;top:84px}
 .khung-xem{background:#111;border-radius:6px;overflow:hidden;aspect-ratio:16/10}
 .khung-xem iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+.nghe{background:#fff;border:1px solid var(--vien);border-top:4px solid var(--do);border-radius:6px;padding:18px 18px 14px}
+.nghe-dau{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.nghe-dau .song{width:44px;height:44px;border-radius:50%;background:var(--do);display:grid;place-items:center;flex:none}
+.nghe-dau b{display:block;font-size:16px}
+.nghe audio{width:100%;height:54px;display:block}
+.nghe-toc{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--chu-phu)}
+.nghe-toc button{border:1px solid var(--vien-dam);background:#fff;border-radius:20px;padding:3px 11px;cursor:pointer;font-size:13px}
+.nghe-toc button.on{background:var(--chu);color:#fff;border-color:var(--chu)}
+.nghe-tt{font-size:13px;color:var(--chu-phu);margin:10px 0 0}
+.nghe-tt.loi{color:var(--do)}
 .khong-link{aspect-ratio:16/10;display:grid;place-items:center;text-align:center;background:var(--vang-nhat);border:1px dashed var(--vien-dam);border-radius:6px;padding:20px;color:var(--chu-phu)}
 .tt-tp{margin-top:12px;background:#fff;border:1px solid var(--vien);border-radius:6px;padding:14px 16px}
 .tt-tp h2{font-family:var(--serif);font-size:19px;margin:0 0 8px;line-height:1.35}
@@ -238,8 +248,8 @@ table.ct{border-collapse:collapse;width:100%;font-size:13px;margin-top:10px}
    CẤU HÌNH — chỉ cần sửa 2 dòng này sau khi tạo project Supabase
    ===================================================================== */
 const CAU_HINH = {
-  SUPABASE_URL: 'https://gpnizzmjmkoepglmnwlk.supabase.co',
-  SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdwbml6em1qbWtvZXBnbG1ud2xrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA3MTg1MTgsImV4cCI6MjEwNjI5NDUxOH0.s9asDgh7E7zbNgn4DB7IaPSb3T6KRbGPDfps9gALPc0',
+  SUPABASE_URL: 'https://XXXXXXXX.supabase.co',
+  SUPABASE_KEY: 'DAN_PUBLISHABLE_HOAC_ANON_KEY_VAO_DAY',
 };
 
 /* =====================================================================
@@ -318,7 +328,7 @@ function linkXem(link) {
   if (!link) return { nhung: null, mo: null };
   const l = link.trim();
   let m = l.match(/drive\.google\.com\/file\/d\/([\w-]+)/) || l.match(/drive\.google\.com\/(?:open|uc)\?(?:.*&)?id=([\w-]+)/);
-  if (m) return { nhung: `https://drive.google.com/file/d/${m[1]}/preview`, mo: `https://drive.google.com/file/d/${m[1]}/view` };
+  if (m) return { nhung: `https://drive.google.com/file/d/${m[1]}/preview`, mo: `https://drive.google.com/file/d/${m[1]}/view`, id: m[1] };
   m = l.match(/drive\.google\.com\/drive\/(?:u\/\d+\/)?folders\/([\w-]+)/);
   if (m) return { nhung: `https://drive.google.com/embeddedfolderview?id=${m[1]}#list`, mo: l, thuMuc: true };
   m = l.match(/docs\.google\.com\/(document|presentation|spreadsheets)\/d\/([\w-]+)/);
@@ -445,6 +455,7 @@ function di(h) { if (location.hash === h) dieuHuong(); else location.hash = h; }
 async function dieuHuong() {
   if (roiTrang) { try { roiTrang(); } catch (e) {} roiTrang = null; }
   window.onbeforeunload = null;
+  $$('audio').forEach(a => { try { a.pause(); } catch (e) {} });
   dongHop();
   if (!S.phien) return manDangNhap();
   const p = (location.hash || '#/').slice(2).split('/');
@@ -537,6 +548,37 @@ function luaChonDiem(max, gt) {
   return h;
 }
 
+/* Trình phát âm thanh cho tác phẩm phát thanh (phát thẳng file MP3 trên Drive) */
+function khungNghe(lx, tp) {
+  return `<div class="nghe">
+    <div class="nghe-dau"><span class="song"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zm-7 9a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12h-2a5 5 0 0 1-10 0H5z" fill="#F5A623"/></svg></span>
+      <div><b>Nghe tác phẩm</b><span class="phu">${tp.thoi_luong ? esc(tp.thoi_luong) : 'Bấm nút phát để nghe'}</span></div></div>
+    <audio id="am-thanh" controls preload="metadata" src="https://drive.google.com/uc?export=download&id=${encodeURIComponent(lx.id)}"></audio>
+    <div class="nghe-toc">Tốc độ nghe: ${[1, 1.25, 1.5].map(v => `<button type="button" data-toc="${v}" class="${v === 1 ? 'on' : ''}">${fmt(v)}×</button>`).join('')}
+      <span class="gian"></span><button type="button" id="dung-drive">Dùng trình phát Google Drive</button></div>
+    <p class="nghe-tt" id="nghe-tt">Đang tải âm thanh…</p>
+  </div>`;
+}
+function ganKhungNghe(lx, tp) {
+  const au = $('#am-thanh'); if (!au) return;
+  const tt = $('#nghe-tt');
+  const phut = s => `${Math.floor(s / 60)} phút ${String(Math.round(s % 60)).padStart(2, '0')} giây`;
+  const sangDrive = (loi) => {
+    au.pause();
+    $('#khung-tp').innerHTML = `<div class="khung-xem"><iframe src="${esc(lx.nhung)}" allow="autoplay; fullscreen" allowfullscreen title="Tác phẩm ${esc(tp.ten)}"></iframe></div>
+      ${loi ? '<p class="nghe-tt loi">File này không phát trực tiếp được nên đã chuyển sang trình phát của Google Drive. Nếu vẫn không nghe được, bấm "Mở tác phẩm ở tab mới".</p>' : ''}`;
+  };
+  au.addEventListener('loadedmetadata', () => { tt.className = 'nghe-tt'; tt.textContent = isFinite(au.duration) ? `Sẵn sàng. Thời lượng ${phut(au.duration)}.` : 'Sẵn sàng.'; });
+  au.addEventListener('waiting', () => { tt.textContent = 'Đang tải thêm…'; });
+  au.addEventListener('playing', () => { tt.textContent = isFinite(au.duration) ? `Đang phát · thời lượng ${phut(au.duration)}` : 'Đang phát'; });
+  au.addEventListener('error', () => sangDrive(true));
+  $$('[data-toc]').forEach(b => b.onclick = () => {
+    au.playbackRate = +b.dataset.toc;
+    $$('[data-toc]').forEach(x => x.classList.toggle('on', x === b));
+  });
+  $('#dung-drive').onclick = () => sangDrive(false);
+}
+
 async function manCham(id) {
   khung(null, 'cham');
   const [kq, ds] = await Promise.all([api('lay_phieu', { p_tac_pham_id: id }), S.dsCuaToi ? Promise.resolve(S.dsCuaToi) : api('ds_tac_pham_cua_toi')]);
@@ -558,9 +600,10 @@ async function manCham(id) {
   $('#main').innerHTML = `
   <div class="cham">
     <section class="xem">
-      ${lx.nhung ? `<div class="khung-xem"><iframe src="${esc(lx.nhung)}" allow="autoplay; fullscreen" allowfullscreen title="Tác phẩm ${esc(tp.ten)}"></iframe></div>`
+      ${tp.loai_hinh === 'PT' && lx.id ? `<div id="khung-tp">${khungNghe(lx, tp)}</div>`
+        : lx.nhung ? `<div class="khung-xem"><iframe src="${esc(lx.nhung)}" allow="autoplay; fullscreen" allowfullscreen title="Tác phẩm ${esc(tp.ten)}"></iframe></div>`
         : `<div class="khong-link"><div>${tp.link ? 'Tác phẩm này không xem trực tiếp được trong trang.<br><br>' : 'Tác phẩm chưa có link Google Drive.<br>Đề nghị Thư ký bổ sung.'}${lx.mo ? `<a class="btn chinh" href="${esc(lx.mo)}" target="_blank" rel="noopener">Mở tác phẩm ở tab mới</a>` : ''}</div></div>`}
-      ${lx.nhung && lx.mo ? `<div style="margin-top:8px;font-size:13px"><a href="${esc(lx.mo)}" target="_blank" rel="noopener">Mở tác phẩm ở tab mới${lx.thuMuc ? ' (thư mục)' : ''}</a> nếu khung xem không phát được.</div>` : ''}
+      ${lx.nhung && lx.mo ? `<div style="margin-top:8px;font-size:13px"><a href="${esc(lx.mo)}" target="_blank" rel="noopener">Mở tác phẩm ở tab mới${lx.thuMuc ? ' (thư mục)' : ''}</a> nếu không phát được.</div>` : ''}
       <div class="tt-tp">
         <h2>${esc(tp.ten)}</h2>
         <dl>
@@ -605,6 +648,7 @@ async function manCham(id) {
     </section>
   </div>`;
 
+  ganKhungNghe(lx, tp);
   const tinhTong = () => {
     const c = st.diem.reduce((a, b) => a + (b || 0), 0);
     return Math.max(0, lam2(c - (st.tru || 0)));
