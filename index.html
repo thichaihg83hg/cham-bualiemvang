@@ -96,6 +96,11 @@ textarea.o{min-height:64px;resize:vertical}
 .chip.nhap{background:var(--cam-nhat);color:var(--cam)}
 .chip.nop{background:var(--xanh-nhat);color:var(--xanh)}
 .chip.do{background:var(--do-nhat);color:var(--do)}
+.chip.cho{background:var(--cam-nhat);color:var(--cam);border:1px solid #F0C98A}
+.diem-cho{color:var(--cam);font-weight:600}
+.nhac-nop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0 2px;padding:12px 14px;border:1px solid #F0C98A;border-left:4px solid var(--vang);background:var(--cam-nhat);border-radius:6px}
+.nhac-nop p{margin:0;flex:1;min-width:220px}
+.trang-luu.du{color:var(--cam);font-weight:600}
 .loc{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .loc button{border:1px solid var(--vien-dam);background:#fff;border-radius:20px;padding:4px 12px;cursor:pointer;font-size:13px}
 .loc button.on{background:var(--chu);color:#fff;border-color:var(--chu)}
@@ -314,6 +319,7 @@ const so = v => (v === null || v === undefined || v === '') ? null : Number(v);
 const fmt = v => v == null ? '' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: 2 });
 const fmt2 = v => v == null ? '' : Number(v).toLocaleString('vi-VN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const lam2 = v => Math.round(v * 100 + 1e-9) / 100;
+const du8 = p => Array.isArray(p.diem) && p.diem.length === 8 && p.diem.every(d => d !== null && d !== undefined);
 const ngayGio = s => s ? new Date(s).toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }) : '';
 
 function toast(msg, loi = false) {
@@ -516,8 +522,10 @@ async function manDanhSach(lhChon) {
   if (!lh) { $('#main').innerHTML = '<div class="dang-tai">Tài khoản chưa được phân công loại hình nào. Liên hệ Thư ký.</div>'; return; }
   const cua = ds.filter(t => t.loai_hinh === lh);
   const daNop = cua.filter(t => t.trang_thai === 'da_nop').length;
+  const choNop = cua.filter(t => t.trang_thai === 'nhap' && t.du);
   const loc = {
-    'tat-ca': () => true, 'chua': t => !t.trang_thai, 'nhap': t => t.trang_thai === 'nhap', 'nop': t => t.trang_thai === 'da_nop',
+    'tat-ca': () => true, 'chua': t => !t.trang_thai, 'nhap': t => t.trang_thai === 'nhap' && !t.du,
+    'cho': t => t.trang_thai === 'nhap' && t.du, 'nop': t => t.trang_thai === 'da_nop',
   };
   const hien = cua.filter(loc[locTrangThai] || loc['tat-ca']);
   $('#main').innerHTML = `
@@ -525,15 +533,30 @@ async function manDanhSach(lhChon) {
     <p class="lead">Chọn tác phẩm để xem và chấm điểm. Điểm được lưu nháp tự động; bấm <b>Nộp phiếu</b> khi chấm xong.</p>
     ${cacLH.length > 1 ? `<div class="tabs">${cacLH.map(k => `<a href="#/cham/${k}" class="${k === lh ? 'on' : ''}">${LOAI_HINH[k].ten} (${ds.filter(t => t.loai_hinh === k).length})</a>`).join('')}</div>` : ''}
     <div class="tien-do"><div class="thanh"><i style="width:${cua.length ? daNop / cua.length * 100 : 0}%"></i></div>Đã nộp ${daNop}/${cua.length} phiếu</div>
-    <div class="loc">${[['tat-ca', 'Tất cả'], ['chua', 'Chưa chấm'], ['nhap', 'Đang chấm dở'], ['nop', 'Đã nộp']].map(([k, t]) => `<button data-loc="${k}" class="${k === locTrangThai ? 'on' : ''}">${t}</button>`).join('')}</div>
+    ${choNop.length ? `<div class="nhac-nop"><p><b>${choNop.length} phiếu đã chấm đủ 8 tiêu chí nhưng chưa nộp.</b> Phiếu chưa nộp chưa được tính vào bảng tổng hợp.</p><button class="btn chinh" id="nop-tat-ca">Nộp ${choNop.length} phiếu</button></div>` : ''}
+    <div class="loc">${[['tat-ca', 'Tất cả'], ['chua', 'Chưa chấm'], ['nhap', 'Đang chấm'], ['cho', 'Chấm xong, chưa nộp'], ['nop', 'Đã nộp']].map(([k, t]) => `<button data-loc="${k}" class="${k === locTrangThai ? 'on' : ''}">${t}</button>`).join('')}</div>
     <div class="ds">${hien.map(t => `
       <a class="dong" href="#/cham/${t.id}">
         <div class="stt">${t.stt}</div>
         <div><div class="ten-tp">${esc(t.ten)}</div><div class="phu">${esc(t.tac_gia)}${t.thoi_luong ? ' · ' + esc(t.thoi_luong) : ''}${!t.link ? ' · <span style="color:var(--do)">chưa có link</span>' : ''}</div></div>
-        <div class="diem-nho">${t.tong != null && t.trang_thai === 'da_nop' ? fmt(t.tong) : ''}</div>
-        <div>${t.trang_thai === 'da_nop' ? '<span class="chip nop">Đã nộp</span>' : t.trang_thai === 'nhap' ? '<span class="chip nhap">Chấm dở</span>' : '<span class="chip chua">Chưa chấm</span>'}</div>
+        <div class="diem-nho ${t.trang_thai === 'nhap' ? 'diem-cho' : ''}">${t.tong != null && (t.trang_thai === 'da_nop' || t.du) ? fmt(t.tong) : ''}</div>
+        <div>${t.trang_thai === 'da_nop' ? '<span class="chip nop">Đã nộp</span>' : t.trang_thai === 'nhap' ? (t.du ? '<span class="chip cho">Chưa nộp</span>' : '<span class="chip nhap">Đang chấm</span>') : '<span class="chip chua">Chưa chấm</span>'}</div>
       </a>`).join('') || '<div class="dang-tai">Không có tác phẩm nào ở mục này.</div>'}</div>`;
   $$('[data-loc]').forEach(b => b.onclick = () => { locTrangThai = b.dataset.loc; manDanhSach(lh); });
+  if (choNop.length) $('#nop-tat-ca').onclick = () => {
+    const h = moHop(`Nộp ${choNop.length} phiếu chấm`, `
+      <p>Các phiếu sau đã chấm đủ 8 tiêu chí và sẽ được nộp:</p>
+      <div style="max-height:300px;overflow:auto;border:1px solid var(--vien);border-radius:5px">
+        <table class="ct" style="margin:0"><thead><tr><th>STT</th><th>Tác phẩm</th><th>Tổng điểm</th></tr></thead>
+        <tbody>${choNop.map(t => `<tr><td class="so">${t.stt}</td><td>${esc(t.ten)}</td><td class="so">${fmt2(t.tong)}</td></tr>`).join('')}</tbody></table></div>
+      <p class="phu">Sau khi nộp, các phiếu bị khóa. Muốn sửa phải đề nghị Thư ký hoặc Tổ trưởng mở khóa. Phiếu chưa chấm đủ 8 tiêu chí không bị nộp.</p>`,
+      `<button class="btn" data-act="dong-hop">Xem lại</button><button class="btn chinh" id="nop-ok">Nộp ${choNop.length} phiếu</button>`);
+    $('#nop-ok', h).onclick = async () => {
+      $('#nop-ok', h).disabled = true;
+      try { const n = await api('nop_cac_phieu', { p_loai_hinh: lh }); dongHop(); toast(`Đã nộp ${n} phiếu.`); manDanhSach(lh); }
+      catch (e) { dongHop(); toast(e.message, true); }
+    };
+  };
 }
 
 /* =====================================================================
@@ -658,7 +681,9 @@ async function manCham(id) {
     const daCham = st.diem.filter(d => d != null).length;
     const tl = $('#trang-luu');
     if (st.daNop) { tl.textContent = ''; return; }
-    tl.textContent = `Đã chấm ${daCham}/8 tiêu chí` + (st.dangLuu ? ' · Đang lưu…' : st.thayDoi ? ' · Chưa lưu' : st.luuLuc ? ` · Đã lưu nháp lúc ${ngayGio(st.luuLuc)}` : '');
+    const luuTT = st.dangLuu ? ' · Đang lưu…' : st.thayDoi ? ' · Chưa lưu' : st.luuLuc ? ` · Đã lưu nháp lúc ${ngayGio(st.luuLuc)}` : '';
+    tl.classList.toggle('du', daCham === 8);
+    tl.textContent = daCham === 8 ? `Đã chấm đủ 8 tiêu chí. Bấm "Nộp phiếu" để hoàn thành${luuTT}.` : `Đã chấm ${daCham}/8 tiêu chí${luuTT}`;
   };
   veTong();
   if (st.daNop) return;
@@ -704,6 +729,22 @@ async function manCham(id) {
       } catch (e) { dongHop(); toast(e.message, true); }
     };
   };
+  /* Rời phiếu đã chấm đủ mà chưa nộp: hỏi có nộp luôn không */
+  $$('.dieu-huong a').forEach(a => a.addEventListener('click', e => {
+    if (st.daNop || st.diem.some(d => d == null)) return;
+    e.preventDefault();
+    const den = a.getAttribute('href');
+    const h = moHop('Phiếu chưa nộp', `
+      <p>Phiếu tác phẩm số ${tp.stt} đã chấm đủ 8 tiêu chí, tổng điểm <b class="bq" style="font-size:20px">${fmt2(tinhTong())}</b>, nhưng <b>chưa nộp</b>.</p>
+      <p class="phu">Phiếu chưa nộp được lưu nháp nhưng chưa được tính vào bảng tổng hợp.</p>`,
+      `<button class="btn" id="di-nhap">Để nháp, sang tiếp</button><button class="btn chinh" id="di-nop">Nộp phiếu và sang tiếp</button>`);
+    $('#di-nhap', h).onclick = () => { dongHop(); location.hash = den; };
+    $('#di-nop', h).onclick = async () => {
+      $('#di-nop', h).disabled = true;
+      try { await luu(true); dongHop(); toast('Đã nộp phiếu.'); location.hash = den; }
+      catch (err) { dongHop(); toast(err.message, true); }
+    };
+  }));
   roiTrang = () => { if (st.thayDoi && !st.dangLuu) luu().catch(() => {}); };
   window.onbeforeunload = () => st.thayDoi ? 'Phiếu chưa lưu' : undefined;
 }
@@ -761,8 +802,10 @@ function veTongHop() {
     <p class="lead">${data.tac_pham.length} tác phẩm, ${gks.length} giám khảo. Đã đủ phiếu: ${soDu}/${data.tac_pham.length} tác phẩm.${soLech ? ` <b style="color:var(--do)">${soLech} tác phẩm chênh lệch từ 2 điểm trở lên.</b>` : ''}</p>
     ${cacLH.length > 1 ? `<div class="tabs">${cacLH.map(k => `<a href="#/tonghop/${k}" class="${k === lh ? 'on' : ''}">${LOAI_HINH[k].ten}</a>`).join('')}</div>` : ''}
     <div class="gk-tien-do">${gks.map((g, i) => {
-      const n = data.tac_pham.filter(t => t.phieu.some(p => p.giam_khao_id === g.id && p.trang_thai === 'da_nop')).length;
-      return `<span>GK${i + 1} ${esc(g.ho_ten)}${g.vai_tro === 'totruong' ? ' (Tổ trưởng)' : ''}: <b>${n}/${data.tac_pham.length}</b></span>`;
+      const ph = data.tac_pham.map(t => t.phieu.find(p => p.giam_khao_id === g.id)).filter(Boolean);
+      const n = ph.filter(p => p.trang_thai === 'da_nop').length;
+      const cho = ph.filter(p => p.trang_thai === 'nhap' && du8(p)).length;
+      return `<span>GK${i + 1} ${esc(g.ho_ten)}${g.vai_tro === 'totruong' ? ' (Tổ trưởng)' : ''}: đã nộp <b>${n}/${data.tac_pham.length}</b>${cho ? ` · <span class="diem-cho">${cho} chấm xong chưa nộp</span>` : ''}</span>`;
     }).join('') || '<span>Chưa có giám khảo nào được phân công loại hình này.</span>'}</div>
     <div class="cong-cu">
       <div class="tabs"><button id="xep-stt" class="${!sapXepTheoDiem ? 'on' : ''}">Theo số thứ tự</button><button id="xep-diem" class="${sapXepTheoDiem ? 'on' : ''}">Xếp hạng theo điểm</button></div>
@@ -781,14 +824,16 @@ function veTongHop() {
           <td class="so">${r.tp.stt}</td>
           <td><div class="ten-tp">${esc(r.tp.ten)}</div><div class="phu">${esc(r.tp.tac_gia)}</div></td>
           ${gks.map(g => { const p = r.theoGK[g.id];
-            return `<td class="so">${!p ? '<span class="mo">—</span>' : p.trang_thai === 'da_nop' ? fmt2(p.tong) : '<span class="chip nhap">dở</span>'}</td>`; }).join('')}
+            return `<td class="so">${!p ? '<span class="mo">—</span>' : p.trang_thai === 'da_nop' ? fmt2(p.tong)
+              : du8(p) ? `<span class="diem-cho" title="Đã chấm đủ nhưng giám khảo chưa nộp, chưa tính vào điểm bình quân">${fmt2(p.tong)}</span><div class="mo" style="font-size:11px">chưa nộp</div>`
+              : '<span class="mo" style="font-size:12px">đang chấm</span>'}</td>`; }).join('')}
           <td class="so"><span class="bq">${fmt2(r.bq)}</span>${r.bq != null && !r.du ? `<div class="mo" style="font-size:11px">${r.soNop}/${gks.length} phiếu</div>` : ''}</td>
           <td class="so">${r.lech != null ? (r.coLech ? `<span class="chip do">${fmt(r.lech)}</span>` : fmt(r.lech)) : ''}</td>
           <td>${r.du ? r.khung : r.khung ? `<span class="mo" title="Chưa đủ phiếu">${r.khung}?</span>` : ''}</td>
           <td><select data-giai="${r.tp.id}" aria-label="Dự kiến giải tác phẩm ${r.tp.stt}"><option value="">—</option>${GIAI.map(g => `<option ${r.tp.du_kien_giai === g ? 'selected' : ''}>${g}</option>`).join('')}</select></td>
           <td><button class="btn nho" data-chi-tiet="${r.tp.id}">Chi tiết</button></td>
         </tr>`).join('')}</tbody></table></div>
-    <p class="chu-thich">Điểm bình quân là trung bình cộng điểm các phiếu <b>đã nộp</b>, làm tròn 2 chữ số. Dòng tô đỏ: điểm giữa các giám khảo chênh lệch từ 02 điểm trở lên, Tổ trưởng cho chấm lại theo Điều 6 Quy chế (mở khóa phiếu trong mục Chi tiết). Khi xếp hạng, tác phẩm bằng điểm được ưu tiên theo điểm "Tác động xã hội", sau đó "Hình thức thể hiện".</p>`;
+    <p class="chu-thich">Điểm bình quân là trung bình cộng điểm các phiếu <b>đã nộp</b>, làm tròn 2 chữ số. Điểm màu cam ghi "chưa nộp" là phiếu giám khảo đã chấm đủ nhưng chưa bấm Nộp phiếu, chưa được tính vào điểm bình quân. Dòng tô đỏ: điểm giữa các giám khảo chênh lệch từ 02 điểm trở lên, Tổ trưởng cho chấm lại theo Điều 6 Quy chế (mở khóa phiếu trong mục Chi tiết). Khi xếp hạng, tác phẩm bằng điểm được ưu tiên theo điểm "Tác động xã hội", sau đó "Hình thức thể hiện".</p>`;
 
   $('#xep-stt').onclick = () => { sapXepTheoDiem = false; veTongHop(); };
   $('#xep-diem').onclick = () => { sapXepTheoDiem = true; veTongHop(); };
@@ -819,7 +864,7 @@ function moChiTiet(tpId) {
         <tr><td><b>Tổng điểm</b></td><td class="so">10</td>${gks.map(g => `<td class="so"><b>${o(g, p => fmt2(p.tong))}</b></td>`).join('')}</tr>
         <tr><td>Trạng thái</td><td></td>${gks.map(g => `<td class="so">${o(g, p => (p.trang_thai === 'da_nop'
           ? `<span class="chip nop">Đã nộp</span><br><button class="btn nho" style="margin-top:6px" data-mo-khoa="${g.id}">Mở khóa</button><br><button class="btn nho" style="margin-top:4px" data-in="${g.id}">In phiếu</button>`
-          : '<span class="chip nhap">Chấm dở</span>')
+          : du8(p) ? '<span class="chip cho">Chưa nộp</span>' : '<span class="chip nhap">Đang chấm</span>')
           + (laAdmin() ? `<br><button class="btn nho nguy" style="margin-top:4px" data-xoa-phieu="${g.id}">Xóa phiếu</button>` : '')) || '<span class="chip chua">Chưa chấm</span>'}</td>`).join('')}</tr>
       </tbody></table></div>
     <h4 style="margin:16px 0 4px">Nhận xét của giám khảo</h4>
@@ -838,7 +883,7 @@ function moChiTiet(tpId) {
     const g = gks.find(x => x.id === +b.dataset.xoaPhieu);
     const p = r.theoGK[g.id];
     xacNhanXoa({ tieuDe: 'Xóa phiếu chấm',
-      noiDung: `<p>Xóa phiếu của <b>${esc(g.ho_ten)}</b> cho tác phẩm số ${tp.stt} <b>${esc(tp.ten)}</b>${p.trang_thai === 'da_nop' ? ` (đã nộp, ${fmt2(p.tong)} điểm)` : ' (đang chấm dở)'}?</p>
+      noiDung: `<p>Xóa phiếu của <b>${esc(g.ho_ten)}</b> cho tác phẩm số ${tp.stt} <b>${esc(tp.ten)}</b>${p.trang_thai === 'da_nop' ? ` (đã nộp, ${fmt2(p.tong)} điểm)` : ' (chưa nộp)'}?</p>
         <p class="phu">Giám khảo sẽ phải chấm lại tác phẩm này từ đầu. Bản sao phiếu bị xóa được lưu trong nhật ký hệ thống.</p>`,
       nut: 'Xóa phiếu' }, async () => {
       await api('xoa_phieu', { p_tac_pham_id: tpId, p_giam_khao_id: g.id });
@@ -983,7 +1028,7 @@ async function xuatExcel(lh, data, ds) {
     const p = tp.phieu.find(x => x.giam_khao_id === g.id);
     if (!p) return;
     const nx = [['Nội dung', p.nx_noi_dung], ['Hình thức', p.nx_hinh_thuc], ['Tác động XH', p.nx_tac_dong], ['Chung', p.nx_chung]].filter(x => x[1]).map(x => `${x[0]}: ${x[1]}`).join('\n');
-    [tp.stt, tp.ten, g.ho_ten, ...p.diem.map(so), Number(p.diem_tru), Number(p.tong), p.trang_thai === 'da_nop' ? 'Đã nộp' : 'Chấm dở', nx]
+    [tp.stt, tp.ten, g.ho_ten, ...p.diem.map(so), Number(p.diem_tru), Number(p.tong), p.trang_thai === 'da_nop' ? 'Đã nộp' : du8(p) ? 'Chưa nộp' : 'Đang chấm', nx]
       .forEach((v, i) => { const c = w2.getCell(r2, i + 1); c.value = v ?? ''; c.font = F; c.border = vien;
         c.alignment = (i === 1 || i === 2 || i === td2.length - 1) ? { vertical: 'top', wrapText: true } : { ...giua, vertical: 'top' }; });
     r2++;
@@ -1137,7 +1182,7 @@ async function manTaiKhoan() {
       <tbody>${ds.map(u => `<tr>
         <td class="so">${u.vai_tro === 'admin' ? '' : u.thu_tu}</td><td><b>${esc(u.ho_ten)}</b></td><td>${esc(u.ten_dang_nhap)}</td><td>${vt[u.vai_tro]}</td>
         <td>${(u.loai_hinh || []).map(k => LOAI_HINH[k]?.ten || k).join(', ')}</td>
-        <td>${u.vai_tro === 'admin' ? '' : `${u.so_nop} đã nộp${u.so_nhap ? `, ${u.so_nhap} chấm dở` : ''}`}</td>
+        <td>${u.vai_tro === 'admin' ? '' : `${u.so_nop} đã nộp${u.so_nhap ? `, ${u.so_nhap} chưa nộp` : ''}`}</td>
         <td>${u.kich_hoat ? '<span class="chip nop">Hoạt động</span>' : '<span class="chip chua">Đã khóa</span>'}</td>
         <td><button class="btn nho" data-sua-tk="${u.id}">Sửa</button></td></tr>`).join('')}</tbody></table></div>`;
   $('#them-tk').onclick = () => suaTaiKhoan(null, ds);
@@ -1162,7 +1207,7 @@ function suaTaiKhoan(u, ds) {
     ${moi || u.id === S.phien.id ? '' : `
     <div style="margin-top:14px;padding:12px 14px;border:1px solid #E9B3BC;border-radius:6px;background:var(--do-nhat)">
       <b style="color:var(--do)">Xóa dữ liệu</b>
-      <p class="phu" style="margin:4px 0 10px">Tài khoản này có ${u.so_nop} phiếu đã nộp, ${u.so_nhap} phiếu chấm dở.</p>
+      <p class="phu" style="margin:4px 0 10px">Tài khoản này có ${u.so_nop} phiếu đã nộp, ${u.so_nhap} phiếu chưa nộp.</p>
       <div class="hang">
         <select class="o" id="tk-xoa-lh" style="width:auto"><option value="">Tất cả loại hình</option>${Object.keys(LOAI_HINH).map(k => `<option value="${k}">${LOAI_HINH[k].ten}</option>`).join('')}</select>
         <button class="btn nguy" id="tk-xoa-diem" ${u.so_nop + u.so_nhap ? '' : 'disabled'}>Xóa điểm đã chấm</button>
